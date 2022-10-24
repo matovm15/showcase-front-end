@@ -1,19 +1,17 @@
 import React from "react";
 
-const FreelancerCard = ({ name, profession, ratings, profileUrl, details }) => {
+const FreelancerCard = ({ name, profession, ratings, image, profileUrl, details }) => {
   return (
-    <div className="freelancer">
+    <>
       <div className="freelancer-overview">
         <div className="freelancer-overview-inner">
           <span className="bookmark-icon"></span>
-
           <div className="freelancer-avatar">
             <div className="verified-badge"></div>
             <a href={profileUrl} tabIndex="0">
-              <img src="images/user-avatar-big-01.jpg" alt="" />
+              <img src={image} alt="" />
             </a>
           </div>
-
           <div className="freelancer-name">
             <h4>
               <a href={profileUrl} tabIndex="0">
@@ -68,7 +66,7 @@ const FreelancerCard = ({ name, profession, ratings, profileUrl, details }) => {
           View Profile <i className="icon-material-outline-arrow-right-alt"></i>
         </a>
       </div>
-    </div>
+    </>
   );
 };
 
