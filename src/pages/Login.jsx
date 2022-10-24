@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../utils/validations";
 import Layout from "../components/Layout";
+import useTitle from "../hooks/useTitle";
 
 const Login = () => {
+  useTitle("Login");
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(loginSchema),
   });
