@@ -3,11 +3,17 @@ import Slider from "react-slick";
 import IntroSection from "../components/home/IntroSection";
 import Layout from "../components/Layout";
 import CategoriesCard from "../components/cards/CategoriesCard";
-import CityCard from "../components/cards/CityCard";
 import FreelancerCard from "../components/cards/FreelancerCard";
 import { categories } from "../data/categories";
 import { featured } from "../data/featured";
+import { universities } from "../data/universities";
 import FeaturedGig from "../components/cards/FeaturedGig";
+import UniversityCard from "../components/cards/UniversityCard";
+import makerere from '../../images/makerere.jpg'
+import kyambogo from '../../images/kya.jpg'
+import mubs from '../../images/mubs.jpg'
+import ucu from '../../images/ucu.jpg'
+import matovu from  '../../images/matovu.jpg'
 
 const Home = () => {
   const settings = {
@@ -75,17 +81,19 @@ const Home = () => {
           <div className="row">
             <div className="col-xl-12">
               <div className="section-headline centered margin-top-0 margin-bottom-45">
-                <h3>Featured Cities</h3>
+                <h3>Featured Universities</h3>
               </div>
             </div>
-            {[...Array(4)].map((e, i) => (
+            {/* https://www.vasterad.com/themes/hireo_21/images/featured-city-01.jpg */}
+            {universities.map((e, i) => (
               <div className="col-xl-3 col-md-6" key={i}>
-                <CityCard
+                <UniversityCard
                   key={i}
-                  title="New York"
-                  count="1,586"
+                  university={e}
+                  title={e.name}
+                  count={e.gigs}
                   link="/jobs"
-                  image="https://www.vasterad.com/themes/hireo_21/images/featured-city-01.jpg"
+                  image={e.id === 'mak' ? makerere : e.id === 'mubs' ? mubs : e.id === 'kya' ? kyambogo : e.id === 'ucu' && ucu}
                 />
               </div>
             ))}
@@ -109,15 +117,15 @@ const Home = () => {
                 {[...Array(6)].map((e, i) => (
                   <FreelancerCard
                     key={i}
-                    image="https://www.vasterad.com/themes/hireo_21/images/user-avatar-big-01.jpg"
-                    name="Tom Smith"
+                    image={matovu}
+                    name="Matovu Ali"
                     ratings={4.9}
                     link="/"
                     profileUrl={"/profile"}
                     profession="UI/UX Designer"
                     details={{
-                      location: "United Kingdom",
-                      rate: "35",
+                      location: "Makerere University",
+                      rate: "15,000",
                       successRate: "95",
                     }}
                   />

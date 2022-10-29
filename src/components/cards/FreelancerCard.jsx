@@ -50,10 +50,10 @@ const FreelancerCard = ({ name, profession, ratings, image, profileUrl, details 
               </strong>
             </li>
             <li>
-              Rate <strong>${details.rate} / hr</strong>
+              Rate <strong>UGX {details.rate} / hr</strong>
             </li>
             <li>
-              Job Success <strong>{details.successRate}%</strong>
+              Gig Success <strong>{details.successRate}%</strong>
             </li>
           </ul>
         </div>
