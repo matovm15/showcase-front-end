@@ -17,12 +17,12 @@ export const categories = [
   {
     count: "298",
     icon: "pencil",
-    info: "Writing & Translations\nCopywriter, Creative Writer, Translator & More",
+    info: "Metal fabrication\nWelding, Cuting, Smelting & More",
   },
   {
     count: "549",
-    icon: "pie-chart",
-    info: "Sales & Marketing\nBrand Manager, Marketing Coordinator & More",
+    icon: "pencil",
+    info: "Beautification and cosmetics\nHair dressing, Nail polishing & More",
   },
   {
     count: "873",

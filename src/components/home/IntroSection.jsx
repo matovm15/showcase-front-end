@@ -15,11 +15,11 @@ const IntroSection = () => {
               <div className="banner-headline">
                 <h3>
                   <strong>
-                    Hire university students or be hired for any gig, any time.
+                    Hire university and tertiary students or be hired for any gig, any time.
                   </strong>
                   <br />
                   <span>
-                    Many university students are interested in{" "}
+                    Many students are interested in{" "}
                     <strong className="color">Showcase</strong> as their number 1 gig platform
                   </span>
                 </h3>

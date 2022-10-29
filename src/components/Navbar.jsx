@@ -1,6 +1,6 @@
 import React from "react";
 import showcase from '../../images/showcase.png'
-import avatar from '../../images/ai.jpg'
+import avatar from '../../images/matovu.jpg'
 
 const Navbar = (props) => {
   const {

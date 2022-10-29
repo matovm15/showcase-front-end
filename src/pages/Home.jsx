@@ -7,6 +7,7 @@ import FreelancerCard from "../components/cards/FreelancerCard";
 import { categories } from "../data/categories";
 import { featured } from "../data/featured";
 import { universities } from "../data/universities";
+import { recomended } from "../data/recomended";
 import FeaturedGig from "../components/cards/FeaturedGig";
 import UniversityCard from "../components/cards/UniversityCard";
 import makerere from '../../images/makerere.jpg'
@@ -32,7 +33,39 @@ const Home = () => {
     });
   }, []);
   return (
+    <>
+    {/* <div className="backdrop"></div>
+    <div className="popup">
+        <div>
+
+        <h4><b>
+        Are you a student? We would like to know some simple details about you inorder to give you the right recomendations
+          </b></h4>
+        <div className="popup-container">
+          <form action="">
+            <div>
+            <label htmlFor="name">Name</label>
+            <input type="text" />
+
+            </div>
+            <div>
+
+            <label htmlFor="profession">Profession</label>
+            <input type="text" />
+            </div>
+            <div>
+
+            <label htmlFor="location">Location</label>
+            <input type="text" />
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+
+        </div>
+        </div>
+      </div> */}
     <Layout>
+      
       <IntroSection />
       <div className="section margin-top-65">
         <div className="container">
@@ -51,6 +84,25 @@ const Home = () => {
                     details={category.info.split("\n")[1]}
                     link="/jobs"
                   />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="section gray margin-top-45 padding-top-65 padding-bottom-75">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12">
+              <div className="section-headline margin-top-0 margin-bottom-35">
+                <h3 style={{ display:'flex', alignItems:'center' }}>Recommended Gigs <span style={{ marginLeft: '0.8rem' }}>3</span></h3>
+                <a href="/jobs" className="headline-link">
+                  Browse All Recommended Gigs
+                </a>
+              </div>
+              <div className="listings-container compact-list-layout margin-top-35">
+                {recomended.map((gig, index) => (
+                  <FeaturedGig key={index} data={gig} />
                 ))}
               </div>
             </div>
@@ -137,6 +189,8 @@ const Home = () => {
         </div>
       </div>
     </Layout>
+    
+    </>
   );
 };
 
