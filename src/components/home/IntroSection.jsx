@@ -40,7 +40,7 @@ const IntroSection = () => {
                     <input
                       id="autoComplete-input"
                       type="text"
-                      placeholder="Which university?"
+                      placeholder="Location"
                       className="pac-target-input"
                       autoComplete="off"
                     />
