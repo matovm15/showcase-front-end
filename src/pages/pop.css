@@ -1,0 +1,26 @@
+.backdrop{
+    position: fixed;
+    background: black;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.popup{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    /* box-shadow: 0px 0px 3px; */
+    z-index: 100;
+    justify-content: center;
+    /* /* background: white; */
+}
+
+.popup-container{
+    background: white;
+    padding: 0.8rem;
+    box-shadow: 0px 0px 3px;
+}

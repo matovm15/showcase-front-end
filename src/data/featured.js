@@ -1,5 +1,12 @@
 export const featured = [
   {
+    title: "Welding assitance",
+    businessName: "Skyist",
+    location: "Kyambogo University",
+    jobType: "400,000 shs fixed",
+    postedAt: "2 days ago",
+  },
+  {
     title: "Tutor in macro economics",
     businessName: "Hexagon",
     location: "Makerere university",
@@ -25,13 +32,6 @@ export const featured = [
     businessName: "King",
     location: "Makerere University Nakawa (MUBS)",
     jobType: "80,000 shs fixed negotiable",
-    postedAt: "2 days ago",
-  },
-  {
-    title: "Machine learning project",
-    businessName: "Skyist",
-    location: "Kyambogo University",
-    jobType: "400,000 shs fixed",
     postedAt: "2 days ago",
   },
 ];
