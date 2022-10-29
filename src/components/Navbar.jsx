@@ -1,4 +1,6 @@
 import React from "react";
+import showcase from '../../images/showcase.png'
+import avatar from '../../images/ai.jpg'
 
 const Navbar = (props) => {
   const {
@@ -106,13 +108,13 @@ const Navbar = (props) => {
   }, [notificationMenuRef, setOpenNotificationMenu]);
 
   return (
-    <header id="header-container" className="fullwidth">
+    <header id="header-container" style={{ position:'fixed' }} className="fullwidth dashboard-header not-sticky">
       <div id="header">
         <div className="container">
           <div className="left-side">
             <div id="logo">
               <a href="/">
-                <img src="images/logo.png" alt="" />
+                <img style={{ height:'2rem' }} src={showcase} alt="" />
               </a>
             </div>
             <nav id="navigation">
@@ -135,10 +137,10 @@ const Navbar = (props) => {
                 </li>
 
                 <li>
-                  <a href="#">Find Work</a>
+                  <a href="#">Find Gigs</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="#">Browse Jobs</a>
+                      <a href="#">Browse Gigs</a>
                       <ul className="dropdown-nav">
                         <li>
                           <a href="jobs-list-layout-full-page-map.html">
@@ -587,7 +589,7 @@ const Navbar = (props) => {
                               <a href="dashboard-messages.html">
                                 <span className="notification-avatar status-online">
                                   <img
-                                    src="images/user-avatar-small-03.jpg"
+                                    src={avatar}
                                     alt=""
                                   />
                                 </span>
@@ -606,7 +608,7 @@ const Navbar = (props) => {
                               <a href="dashboard-messages.html">
                                 <span className="notification-avatar status-offline">
                                   <img
-                                    src="images/user-avatar-small-02.jpg"
+                                    src={avatar}
                                     alt=""
                                   />
                                 </span>
@@ -662,7 +664,7 @@ const Navbar = (props) => {
                 <div className="header-notifications-trigger">
                   <a href="#" ref={userMenuRef} onClick={handleClickUserMenu}>
                     <div className="user-avatar status-online">
-                      <img src="images/user-avatar-small-01.jpg" alt="" />
+                      <img src={avatar} alt="" />
                     </div>
                   </a>
                 </div>
@@ -671,7 +673,7 @@ const Navbar = (props) => {
                   <div className="user-status">
                     <div className="user-details">
                       <div className="user-avatar status-online">
-                        <img src="images/user-avatar-small-01.jpg" alt="" />
+                        <img src={avatar}  alt="" />
                       </div>
                       <div className="user-name">
                         Tom Smith <span>Freelancer</span>
