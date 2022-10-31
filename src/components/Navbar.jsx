@@ -246,30 +246,30 @@ const Navbar = (props) => {
                   <a href="#">Dashboard</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="dashboard.html">Dashboard</a>
+                      <a href="/dashboard">Dashboard</a>
                     </li>
                     <li>
-                      <a href="dashboard-messages.html">Messages</a>
+                      <a href="/messages">Messages</a>
                     </li>
                     <li>
-                      <a href="dashboard-bookmarks.html">Bookmarks</a>
+                      <a href="/bookmarks">Bookmarks</a>
                     </li>
                     <li>
-                      <a href="dashboard-reviews.html">Reviews</a>
+                      <a href="/reviews">Reviews</a>
                     </li>
                     <li>
-                      <a href="dashboard-manage-jobs.html">Jobs</a>
+                      <a href="dashboard-manage-jobs.html">Gigs</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="dashboard-manage-jobs.html">Manage Jobs</a>
+                          <a href="/manage-gigs">Manage Gigs</a>
                         </li>
                         <li>
-                          <a href="dashboard-manage-candidates.html">
+                          <a href="/manage-candidates">
                             Manage Candidates
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-post-a-job.html">Post a Job</a>
+                          <a href="/post-gig">Post a Gig</a>
                         </li>
                       </ul>
                     </li>
@@ -277,10 +277,10 @@ const Navbar = (props) => {
                       <a href="dashboard-manage-tasks.html">Tasks</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="dashboard-manage-tasks.html">Manage Tasks</a>
+                          <a href="/manage-tasks">Manage Tasks</a>
                         </li>
                         <li>
-                          <a href="dashboard-manage-bidders.html">
+                          <a href="/manage-bidders">
                             Manage Bidders
                           </a>
                         </li>
