@@ -285,17 +285,17 @@ const Navbar = (props) => {
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-my-active-bids.html">
+                          <a href="/active-bids">
                             My Active Bids
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-post-a-task.html">Post a Task</a>
+                          <a href="/post-task">Post a Task</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="dashboard-settings.html">Settings</a>
+                      <a href="/settings">Settings</a>
                     </li>
                   </ul>
                 </li>

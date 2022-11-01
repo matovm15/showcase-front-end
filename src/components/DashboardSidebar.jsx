@@ -39,14 +39,14 @@ const DashboardSidebar = () => {
                                     <ul>
                                         <li><a href="/manage-tasks">Manage Tasks <span className="nav-tag">2</span></a></li>
                                         <li><a href="/manage-bidders">Manage Bidders</a></li>
-                                        <li><a href="dashboard-my-active-bids.html">My Active Bids <span className="nav-tag">4</span></a></li>
-                                        <li><a href="dashboard-post-a-task.html">Post a Task</a></li>
+                                        <li><a href="/active-bids">My Active Bids <span className="nav-tag">4</span></a></li>
+                                        <li><a href="/post-task">Post a Task</a></li>
                                     </ul>	
                                 </li>
                             </ul>
 
                             <ul data-submenu-title="Account">
-                                <li><a href="dashboard-settings.html"><i className="icon-material-outline-settings"></i> Settings</a></li>
+                                <li><a href="/settings"><i className="icon-material-outline-settings"></i> Settings</a></li>
                                 <li><a href="index-logged-out.html"><i className="icon-material-outline-power-settings-new"></i> Logout</a></li>
                             </ul>
                             
