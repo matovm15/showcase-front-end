@@ -4,8 +4,9 @@ import DashboardSidebar from "../components/DashboardSidebar"
 const ManageBidders = () => {
   return (
     <Layout>
-        <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-container">
             <DashboardSidebar />
+        <div class="dashboard-content-container" data-simplebar>
                
                 <div class="dashboard-content-inner" >
                     
@@ -282,6 +283,7 @@ const ManageBidders = () => {
 
                     </div>
                 </div>
+            </div>
             </div>
     </Layout>
   )

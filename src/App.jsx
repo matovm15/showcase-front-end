@@ -11,6 +11,9 @@ import ManageCandidates from "./pages/ManageCandidates";
 import PostGig from "./pages/PostGig";
 import ManageTasks from "./pages/ManageTasks";
 import ManageBidders from "./pages/ManageBidders";
+import ActiveBids from "./pages/ActiveBids";
+import PostTask from "./pages/PostTask";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -28,6 +31,9 @@ const App = () => {
         <Route path="/post-gig" element={<PostGig />} />
         <Route path="/manage-tasks" element={<ManageTasks />} />
         <Route path="/manage-bidders" element={<ManageBidders />} />
+        <Route path="/active-bids" element={<ActiveBids />} />
+        <Route path="/post-task" element={<PostTask />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );
