@@ -1,12 +1,11 @@
 import React from "react";
-import coder from "../../images/cd.png"
 
 const IntroSection = () => {
   return (
     <>
       <div
         className="intro-banner"
-        data-background-image="images/home-background.jpg"
+        data-background-image="images/cd.png"
       >
         <div className="container">
           <div className="row">

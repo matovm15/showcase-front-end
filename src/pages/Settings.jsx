@@ -1,5 +1,6 @@
 import Layout from "../components/dashboard/Layout";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
+import { countries } from "../data/countries"
 
 const Settings = () => {
   return (
