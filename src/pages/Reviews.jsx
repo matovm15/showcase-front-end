@@ -1,23 +1,16 @@
-import Layout from "../components/Layout"
-import DashboardSidebar from "../components/DashboardSidebar"
+import Layout from "../components/dashboard/Layout"
+import DashboardSidebar from "../components/dashboard/DashboardSidebar"
 
 const Reviews = () => {
   return (
     <Layout>
         <div className="dashboard-container">
             <DashboardSidebar />
-                    {/* <!-- Dashboard Content
-            ================================================== --> */}
-            {/* <!-- Dashboard Content
-================================================== --> */}
             <div class="dashboard-content-container" data-simplebar>
 		<div class="dashboard-content-inner" >
 			
-			{/* <!-- Dashboard Headline --> */}
 			<div class="dashboard-headline">
 				<h3>Reviews</h3>
-
-				{/* <!-- Breadcrumbs --> */}
 				<nav id="breadcrumbs" class="dark">
 					<ul>
 						<li><a href="#">Home</a></li>
@@ -27,10 +20,7 @@ const Reviews = () => {
 				</nav>
 			</div>
 	
-			{/* <!-- Row --> */}
 			<div class="row">
-
-				{/* <!-- Dashboard Box --> */}
 				<div class="col-xl-6">
 					<div class="dashboard-box margin-top-0">
 
@@ -43,7 +33,6 @@ const Reviews = () => {
 							<ul class="dashboard-box-list">
 								<li>
 									<div class="boxed-list-item">
-										{/* <!-- Content --> */}
 										<div class="item-content">
 											<h4>Simple Chrome Extension</h4>
 											<span class="company-not-rated margin-bottom-5">Not Rated</span>
@@ -54,7 +43,6 @@ const Reviews = () => {
 								</li>
 								<li>
 									<div class="boxed-list-item">
-										{/* <!-- Content --> */}
 										<div class="item-content">
 											<h4>Adsense Expert</h4>
 											<span class="company-not-rated margin-bottom-5">Not Rated</span>
@@ -81,7 +69,6 @@ const Reviews = () => {
 								</li>
 								<li>
 									<div class="boxed-list-item">
-										{/* <!-- Content --> */}
 										<div class="item-content">
 											<h4>PHP Core Website Fixes</h4>
 											<div class="item-details margin-top-10">
@@ -99,8 +86,6 @@ const Reviews = () => {
 							</ul>
 						</div>
 					</div>
-
-					{/* <!-- Pagination --> */}
 					<div class="clearfix"></div>
 					<div class="pagination-container margin-top-40 margin-bottom-0">
 						<nav class="pagination">
@@ -113,15 +98,10 @@ const Reviews = () => {
 						</nav>
 					</div>
 					<div class="clearfix"></div>
-					{/* <!-- Pagination / End --> */}
 
 				</div>
-
-				{/* <!-- Dashboard Box --> */}
 				<div class="col-xl-6">
 					<div class="dashboard-box margin-top-0">
-
-						{/* <!-- Headline --> */}
 						<div class="headline">
 							<h3><i class="icon-material-outline-face"></i> Rate Freelancers</h3>
 						</div>
@@ -130,7 +110,6 @@ const Reviews = () => {
 							<ul class="dashboard-box-list">
 								<li>
 									<div class="boxed-list-item">
-										{/* <!-- Content --> */}
 										<div class="item-content">
 											<h4>Simple Chrome Extension</h4>
 											<span class="company-not-rated margin-bottom-5">Not Rated</span>
@@ -162,9 +141,6 @@ const Reviews = () => {
 
 
 			</div>
-			{/* <!-- Row / End -->
-
-			<!-- Footer --> */}
 			<div class="dashboard-footer-spacer"></div>
 			<div class="small-footer margin-top-15">
 				<div class="small-footer-copyrights">
@@ -198,8 +174,6 @@ const Reviews = () => {
 
 		</div>
 	</div>
-    {/* <!-- Edit Review Popup
-================================================== --> */}
 <div id="small-dialog-1" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
 	{/* <!--Tabs --> */}

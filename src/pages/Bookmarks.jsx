@@ -1,5 +1,5 @@
-import Layout from "../components/Layout"
-import DashboardSidebar from "../components/DashboardSidebar"
+import Layout from "../components/dashboard/Layout"
+import DashboardSidebar from "../components/dashboard/DashboardSidebar"
 
 const Bookmarks = () => {
     return (

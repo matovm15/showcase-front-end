@@ -1,5 +1,5 @@
 import React from "react";
-import coder from "../../../images/cd.png"
+import coder from "../../images/cd.png"
 
 const IntroSection = () => {
   return (
@@ -7,7 +7,6 @@ const IntroSection = () => {
       <div
         className="intro-banner"
         data-background-image="images/home-background.jpg"
-        style={{ boxShadow: "0rem 0rem 0.3rem" }}
       >
         <div className="container">
           <div className="row">
@@ -28,7 +27,7 @@ const IntroSection = () => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="intro-banner-search-form margin-top-95" style={{ boxShadow: '0rem 0rem 0.3rem' }}>
+              <div className="intro-banner-search-form margin-top-95">
                 <div className="intro-search-field with-autoComplete with-label">
                   <label
                     htmlFor="autoComplete-input"
@@ -90,7 +89,7 @@ const IntroSection = () => {
         {/* https://www.vasterad.com/themes/hireo_21/images/home-background.jpg */}
         <div
           className="background-image-container"
-          style={{ backgroundImage: "url('../../../images/cd.png')", backgroundPosition:'60%', width:'50%', left:"50%" }}
+          style={{ backgroundImage: "url('../../images/cd.png')", backgroundPosition:'60%', width:'50%', left:"50%" }}
         ></div>
       </div>
     </>
