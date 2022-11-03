@@ -13,7 +13,7 @@ const FeaturedGig = ({ data }) => {
 
           <div className="job-listing-footer">
             <ul>
-              <li>
+              {/* <li>
                 <i className="icon-material-outline-business"></i>{" "}
                 {data.businessName}
                 <div
@@ -22,13 +22,13 @@ const FeaturedGig = ({ data }) => {
                   data-tippy=""
                   data-original-title="Verified Employer"
                 ></div>
-              </li>
+              </li> */}
               <li>
                 <i className="icon-material-outline-location-on"></i>{" "}
                 {data.location}
               </li>
               <li>
-                <i className="icon-material-outline-business-center"></i>{" "}
+                <i className="icon-material-outline-money"></i>{" "}
                 {data.jobType}
               </li>
               <li>

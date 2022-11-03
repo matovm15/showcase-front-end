@@ -5,7 +5,7 @@ const IntroSection = () => {
     <>
       <div
         className="intro-banner"
-        data-background-image="images/home-background.jpg"
+        data-background-image="images/cd.png"
       >
         <div className="container">
           <div className="row">
@@ -13,13 +13,12 @@ const IntroSection = () => {
               <div className="banner-headline">
                 <h3>
                   <strong>
-                    Hire experts or be hired htmlFor any job, any time.
+                    Hire university and tertiary students or be hired for any gig, any time.
                   </strong>
                   <br />
                   <span>
-                    Thousands of small businesses use{" "}
-                    <strong className="color">Hireo</strong> to turn their ideas
-                    into reality.
+                    Many students are interested in{" "}
+                    <strong className="color">Showcase</strong> as their number 1 gig platform
                   </span>
                 </h3>
               </div>
@@ -39,7 +38,7 @@ const IntroSection = () => {
                     <input
                       id="autoComplete-input"
                       type="text"
-                      placeholder="Online Job"
+                      placeholder="Location"
                       className="pac-target-input"
                       autoComplete="off"
                     />
@@ -52,12 +51,12 @@ const IntroSection = () => {
                     htmlFor="intro-keywords"
                     className="field-title ripple-effect"
                   >
-                    What job you want?
+                    What gig do you want?
                   </label>
                   <input
                     id="intro-keywords"
                     type="text"
-                    placeholder="Job Title or Keywords"
+                    placeholder="Gig Title or Keywords"
                   />
                 </div>
 
@@ -72,11 +71,11 @@ const IntroSection = () => {
               <ul className="intro-stats margin-top-45 hide-under-992px">
                 <li>
                   <strong className="counter">1,586</strong>
-                  <span>Jobs Posted</span>
+                  <span>Gigs</span>
                 </li>
                 <li>
                   <strong className="counter">3,543</strong>
-                  <span>Tasks Posted</span>
+                  <span>Gigs Posted</span>
                 </li>
                 <li>
                   <strong className="counter">1,232</strong>
@@ -86,9 +85,10 @@ const IntroSection = () => {
             </div>
           </div>
         </div>
+        {/* https://www.vasterad.com/themes/hireo_21/images/home-background.jpg */}
         <div
           className="background-image-container"
-          style={{ backgroundImage: "url('https://www.vasterad.com/themes/hireo_21/images/home-background.jpg')" }}
+          style={{ backgroundImage: "url('../../images/cd.png')", backgroundPosition:'60%', width:'50%', left:"50%" }}
         ></div>
       </div>
     </>

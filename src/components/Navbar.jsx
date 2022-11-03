@@ -1,4 +1,6 @@
 import React from "react";
+import showcase from '../images/showcase.png'
+import avatar from '../images/matovu.jpg'
 
 const Navbar = (props) => {
   const {
@@ -106,13 +108,13 @@ const Navbar = (props) => {
   }, [notificationMenuRef, setOpenNotificationMenu]);
 
   return (
-    <header id="header-container" className="fullwidth">
+    <header id="header-container" style={{ position:'fixed' }} className="fullwidth dashboard-header not-sticky">
       <div id="header">
         <div className="container">
           <div className="left-side">
             <div id="logo">
               <a href="/">
-                <img src="images/logo.png" alt="" />
+                <img style={{ height:'2rem' }} src={showcase} alt="" />
               </a>
             </div>
             <nav id="navigation">
@@ -135,10 +137,10 @@ const Navbar = (props) => {
                 </li>
 
                 <li>
-                  <a href="#">Find Work</a>
+                  <a href="#">Find Gigs</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="#">Browse Jobs</a>
+                      <a href="#">Browse Gigs</a>
                       <ul className="dropdown-nav">
                         <li>
                           <a href="jobs-list-layout-full-page-map.html">
@@ -244,30 +246,30 @@ const Navbar = (props) => {
                   <a href="#">Dashboard</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="dashboard.html">Dashboard</a>
+                      <a href="/dashboard">Dashboard</a>
                     </li>
                     <li>
-                      <a href="dashboard-messages.html">Messages</a>
+                      <a href="/messages">Messages</a>
                     </li>
                     <li>
-                      <a href="dashboard-bookmarks.html">Bookmarks</a>
+                      <a href="/bookmarks">Bookmarks</a>
                     </li>
                     <li>
-                      <a href="dashboard-reviews.html">Reviews</a>
+                      <a href="/reviews">Reviews</a>
                     </li>
                     <li>
-                      <a href="dashboard-manage-jobs.html">Jobs</a>
+                      <a href="dashboard-manage-jobs.html">Gigs</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="dashboard-manage-jobs.html">Manage Jobs</a>
+                          <a href="/manage-gigs">Manage Gigs</a>
                         </li>
                         <li>
-                          <a href="dashboard-manage-candidates.html">
+                          <a href="/manage-candidates">
                             Manage Candidates
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-post-a-job.html">Post a Job</a>
+                          <a href="/post-gig">Post a Gig</a>
                         </li>
                       </ul>
                     </li>
@@ -275,25 +277,25 @@ const Navbar = (props) => {
                       <a href="dashboard-manage-tasks.html">Tasks</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="dashboard-manage-tasks.html">Manage Tasks</a>
+                          <a href="/manage-tasks">Manage Tasks</a>
                         </li>
                         <li>
-                          <a href="dashboard-manage-bidders.html">
+                          <a href="/manage-bidders">
                             Manage Bidders
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-my-active-bids.html">
+                          <a href="/active-bids">
                             My Active Bids
                           </a>
                         </li>
                         <li>
-                          <a href="dashboard-post-a-task.html">Post a Task</a>
+                          <a href="/post-task">Post a Task</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="dashboard-settings.html">Settings</a>
+                      <a href="/settings">Settings</a>
                     </li>
                   </ul>
                 </li>
@@ -587,7 +589,7 @@ const Navbar = (props) => {
                               <a href="dashboard-messages.html">
                                 <span className="notification-avatar status-online">
                                   <img
-                                    src="images/user-avatar-small-03.jpg"
+                                    src={avatar}
                                     alt=""
                                   />
                                 </span>
@@ -606,7 +608,7 @@ const Navbar = (props) => {
                               <a href="dashboard-messages.html">
                                 <span className="notification-avatar status-offline">
                                   <img
-                                    src="images/user-avatar-small-02.jpg"
+                                    src={avatar}
                                     alt=""
                                   />
                                 </span>
@@ -662,7 +664,7 @@ const Navbar = (props) => {
                 <div className="header-notifications-trigger">
                   <a href="#" ref={userMenuRef} onClick={handleClickUserMenu}>
                     <div className="user-avatar status-online">
-                      <img src="images/user-avatar-small-01.jpg" alt="" />
+                      <img src={avatar} alt="" />
                     </div>
                   </a>
                 </div>
@@ -671,7 +673,7 @@ const Navbar = (props) => {
                   <div className="user-status">
                     <div className="user-details">
                       <div className="user-avatar status-online">
-                        <img src="images/user-avatar-small-01.jpg" alt="" />
+                        <img src={avatar}  alt="" />
                       </div>
                       <div className="user-name">
                         Tom Smith <span>Freelancer</span>

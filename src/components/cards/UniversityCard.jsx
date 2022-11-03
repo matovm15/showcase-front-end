@@ -1,6 +1,6 @@
 import React from "react";
 
-const CityCard = ({ city, link, image, count }) => {
+const UniversityCard = ({ university, link, image, count }) => {
   return (
     <a
       href={link}
@@ -9,11 +9,11 @@ const CityCard = ({ city, link, image, count }) => {
       style={{ backgroundImage: `url(${image})` }}
     >
       <div className="photo-box-content">
-        <h3>{city}</h3>
+        <h3>{university.name}</h3>
         <span>{count} Jobs</span>
       </div>
     </a>
   );
 };
 
-export default CityCard;
+export default UniversityCard;

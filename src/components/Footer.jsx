@@ -48,9 +48,9 @@ const Footer = () => {
                             data-tippy-placement="bottom"
                             data-tippy-theme="light"
                             data-tippy=""
-                            data-original-title="Google Plus"
+                            data-original-title="Instagram"
                           >
-                            <i className="icon-brand-google-plus-g"></i>
+                            <i className="icon-brand-instagram"></i>
                           </a>
                         </li>
                         <li>
