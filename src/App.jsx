@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Freelancers from "./pages/Freelancers";
 import Dashboard from "./pages/Dashboard";
 import Messages from "./pages/Messages";
 import Bookmarks from "./pages/Bookmarks";
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/freelancers" element={<Freelancers />} />
         <Route path="/dashboard">
           <Route index element={<Dashboard />} />
           <Route path="messages" element={<Messages />} />
