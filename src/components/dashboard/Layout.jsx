@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
       setOpenMessageMenu(false);
     }
     setOpenMobileMenu(!openMobileMenu);
-    // add a class to html element to prevent scrolling
+    // add a className to html element to prevent scrolling
     addOrRemoveClass();
   };
 

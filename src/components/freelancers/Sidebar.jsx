@@ -257,31 +257,31 @@ const Sidebar = () => {
                 <div className="tags-container">
                   <div className="tag">
                     <input type="checkbox" id="tag1" />
-                    <label for="tag1">front-end dev</label>
+                    <label htmlFor="tag1">front-end dev</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag2" />
-                    <label for="tag2">angular</label>
+                    <label htmlFor="tag2">angular</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag3" />
-                    <label for="tag3">react</label>
+                    <label htmlFor="tag3">react</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag4" />
-                    <label for="tag4">vue js</label>
+                    <label htmlFor="tag4">vue js</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag5" />
-                    <label for="tag5">web apps</label>
+                    <label htmlFor="tag5">web apps</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag6" />
-                    <label for="tag6">design</label>
+                    <label htmlFor="tag6">design</label>
                   </div>
                   <div className="tag">
                     <input type="checkbox" id="tag7" />
-                    <label for="tag7">wordpress</label>
+                    <label htmlFor="tag7">wordpress</label>
                   </div>
                 </div>
                 <div className="clearfix"></div>
