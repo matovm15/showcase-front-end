@@ -15,6 +15,8 @@ import ManageBidders from "./pages/ManageBidders";
 import ActiveBids from "./pages/ActiveBids";
 import PostTask from "./pages/PostTask";
 import Settings from "./pages/Settings";
+import FindFreelancers from "./pages/FindFreelancers"
+import FreelancerProfile from "./pages/FreelancerProfile";
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
           <Route path="post-task" element={<PostTask />} />
           <Route path="settings" element={<Settings />} />
         </Route>
+      <Route path='/find-freelancers' element={<FindFreelancers />} />
+      <Route path='/freelancer-profile' element={<FreelancerProfile />} />
       </Routes>
     </Router>
   );

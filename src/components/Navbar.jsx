@@ -206,38 +206,17 @@ const Navbar = (props) => {
                   <a href="#">For Employers</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="#">Find a Freelancer</a>
-                      <ul className="dropdown-nav">
-                        <li>
-                          <a href="freelancers-grid-layout-full-page.html">
-                            Full Page Grid
-                          </a>
-                        </li>
-                        <li>
-                          <a href="freelancers-grid-layout.html">Grid Layout</a>
-                        </li>
-                        <li>
-                          <a href="freelancers-list-layout-1.html">
-                            List Layout 1
-                          </a>
-                        </li>
-                        <li>
-                          <a href="freelancers-list-layout-2.html">
-                            List Layout 2
-                          </a>
-                        </li>
-                      </ul>
+                      <a href="/find-freelancers">Find a Freelancer</a>
+                      
                     </li>
                     <li>
-                      <a href="single-freelancer-profile.html">
+                      <a href="/freelancer-profile">
                         Freelancer Profile
                       </a>
                     </li>
+                    
                     <li>
-                      <a href="dashboard-post-a-job.html">Post a Job</a>
-                    </li>
-                    <li>
-                      <a href="dashboard-post-a-task.html">Post a Task</a>
+                      <a href="/dashboard/post-task">Post a Task</a>
                     </li>
                   </ul>
                 </li>
@@ -249,7 +228,7 @@ const Navbar = (props) => {
                       <a href="/dashboard">Dashboard</a>
                     </li>
                     <li>
-                      <a href="/messages">Messages</a>
+                      <a href="/dashboard/messages">Messages</a>
                     </li>
                     <li>
                       <a href="/bookmarks">Bookmarks</a>
