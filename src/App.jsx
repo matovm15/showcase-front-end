@@ -17,6 +17,8 @@ import PostTask from "./pages/PostTask";
 import Settings from "./pages/Settings";
 import FindFreelancers from "./pages/FindFreelancers"
 import FreelancerProfile from "./pages/FreelancerProfile";
+import BrowseGigs from "./pages/BrowseGigs";
+import Bid from "./pages/Bid";
 
 const App = () => {
   return (
@@ -42,6 +44,12 @@ const App = () => {
         </Route>
       <Route path='/find-freelancers' element={<FindFreelancers />} />
       <Route path='/freelancer-profile' element={<FreelancerProfile />} />
+      <Route path='/gigs'>
+      <Route path='browse' element={<BrowseGigs />} />
+      <Route path='view-bid' element={<Bid />} />
+
+      </Route>
+      
       </Routes>
     </Router>
   );

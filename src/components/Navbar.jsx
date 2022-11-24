@@ -125,81 +125,23 @@ const Navbar = (props) => {
                   </a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="index.html">Home 1</a>
+                      <a href="index.html">About</a>
                     </li>
                     <li>
-                      <a href="index-2.html">Home 2</a>
+                      <a href="index-2.html">Categories</a>
                     </li>
                     <li>
-                      <a href="index-3.html">Home 3</a>
+                      <a href="index-3.html">Footer</a>
+                    </li>
+                    <li>
+                      <a href="index-3.html">So on...</a>
                     </li>
                   </ul>
                 </li>
 
                 <li>
-                  <a href="#">Find Gigs</a>
-                  <ul className="dropdown-nav">
-                    <li>
-                      <a href="#">Browse Gigs</a>
-                      <ul className="dropdown-nav">
-                        <li>
-                          <a href="jobs-list-layout-full-page-map.html">
-                            Full Page List + Map
-                          </a>
-                        </li>
-                        <li>
-                          <a href="jobs-grid-layout-full-page-map.html">
-                            Full Page Grid + Map
-                          </a>
-                        </li>
-                        <li>
-                          <a href="jobs-grid-layout-full-page.html">
-                            Full Page Grid
-                          </a>
-                        </li>
-                        <li>
-                          <a href="jobs-list-layout-1.html">List Layout 1</a>
-                        </li>
-                        <li>
-                          <a href="jobs-list-layout-2.html">List Layout 2</a>
-                        </li>
-                        <li>
-                          <a href="jobs-grid-layout.html">Grid Layout</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">Browse Tasks</a>
-                      <ul className="dropdown-nav">
-                        <li>
-                          <a href="tasks-list-layout-1.html">List Layout 1</a>
-                        </li>
-                        <li>
-                          <a href="tasks-list-layout-2.html">List Layout 2</a>
-                        </li>
-                        <li>
-                          <a href="tasks-grid-layout.html">Grid Layout</a>
-                        </li>
-                        <li>
-                          <a href="tasks-grid-layout-full-page.html">
-                            Full Page Grid
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="browse-companies.html">Browse Companies</a>
-                    </li>
-                    <li>
-                      <a href="single-job-page.html">Job Page</a>
-                    </li>
-                    <li>
-                      <a href="single-task-page.html">Task Page</a>
-                    </li>
-                    <li>
-                      <a href="single-company-profile.html">Company Profile</a>
-                    </li>
-                  </ul>
+                  <a href="/gigs/browse">Find Gigs</a>
+                  
                 </li>
 
                 <li>
