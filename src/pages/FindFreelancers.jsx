@@ -44,7 +44,6 @@ const FindFreelancers = () => {
 					</select>
 				</div>
 
-				{/* //Keywords // */}
 				<div class="sidebar-widget">
 					<h3>Keywords</h3>
 					<div class="keywords-container">
@@ -52,7 +51,7 @@ const FindFreelancers = () => {
 							<input type="text" class="keyword-input" placeholder="e.g. task title"/>
 							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
 						</div>
-						<div class="keywords-list">//keywords go here //</div>
+						<div class="keywords-list"></div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -63,7 +62,6 @@ const FindFreelancers = () => {
 					<h3>Hourly Rate</h3>
 					<div class="margin-top-55"></div>
 
-					{/* //Range Slider // */}
 					<input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="10" data-slider-max="250" data-slider-step="5" data-slider-value="[10,250]"/>
 				</div>
 
@@ -109,7 +107,7 @@ const FindFreelancers = () => {
 							<input type="text" class="keyword-input" placeholder="add more skills"/>
 							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
 						</div>
-						<div class="keywords-list">//keywords go here //</div>
+						<div class="keywords-list"></div>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -152,7 +150,7 @@ const FindFreelancers = () => {
 				</div>
 			</div>
 
-			//Freelancers List Container //
+			
 			<div class="freelancers-container freelancers-grid-layout margin-top-35">
 				
 				{/* <!--Freelancer // */}
@@ -196,7 +194,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 
 				{/* <!--Freelancer // */}
 				<div class="freelancer">
@@ -239,7 +237,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 
 				{/* <!--Freelancer // */}
 				<div class="freelancer">
@@ -278,7 +276,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 
 				{/* <!--Freelancer // */}
 				<div class="freelancer">
@@ -320,7 +318,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 				
 				{/* <!--Freelancer // */}
 				<div class="freelancer">
@@ -361,7 +359,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 							
 				{/* <!--Freelancer // */}
 				<div class="freelancer">
@@ -402,7 +400,7 @@ const FindFreelancers = () => {
 						<a href="single-freelancer-profile.html" class="button button-sliding-icon ripple-effect">View Profile <i class="icon-material-outline-arrow-right-alt"></i></a>
 					</div>
 				</div>
-				//Freelancer / End //
+				
 	
 			</div>
 			//Freelancers Container / End //

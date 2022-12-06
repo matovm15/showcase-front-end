@@ -19,6 +19,7 @@ import FindFreelancers from "./pages/FindFreelancers"
 import FreelancerProfile from "./pages/FreelancerProfile";
 import BrowseGigs from "./pages/BrowseGigs";
 import Bid from "./pages/Bid";
+import CreateAccount from "./pages/CreateAccount";
 
 const App = () => {
   return (
@@ -26,7 +27,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register">
+          <Route index element={<Register/>} />
+          <Route path='create-profile/:user' element={<CreateAccount />} />
+        </Route>
         <Route path="/freelancers" element={<Freelancers />} />
         <Route path="/dashboard">
           <Route index element={<Dashboard />} />

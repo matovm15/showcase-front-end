@@ -119,36 +119,31 @@ const Navbar = (props) => {
             </div>
             <nav id="navigation">
               <ul id="responsive">
-                <li>
-                  <a href="#" className="current">
-                    Home
-                  </a>
-                  <ul className="dropdown-nav">
-                    <li>
-                      <a href="index.html">About</a>
-                    </li>
-                    <li>
-                      <a href="index-2.html">Categories</a>
-                    </li>
-                    <li>
-                      <a href="index-3.html">Footer</a>
-                    </li>
-                    <li>
-                      <a href="index-3.html">So on...</a>
-                    </li>
-                  </ul>
-                </li>
 
                 <li>
-                  <a href="/gigs/browse">Find Gigs</a>
-                  
+                  <a href="/gigs/browse">For freelancers</a>
+                  <ul className="dropdown-nav">
+                    <li>
+                      <a href="/find-freelancers">Browse gigs</a>
+                      
+                    </li>
+                    <li>
+                      <a href="/freelancer-profile">
+                        Freelancer Profile
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="/dashboard/post-task">Post a Task</a>
+                    </li>
+                  </ul>
                 </li>
 
                 <li>
                   <a href="#">For Employers</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="/find-freelancers">Find a Freelancer</a>
+                      <a href="/find-freelancers">For Freelancer</a>
                       
                     </li>
                     <li>
@@ -173,24 +168,24 @@ const Navbar = (props) => {
                       <a href="/dashboard/messages">Messages</a>
                     </li>
                     <li>
-                      <a href="/bookmarks">Bookmarks</a>
+                      <a href="/dashboard/bookmarks">Bookmarks</a>
                     </li>
                     <li>
-                      <a href="/reviews">Reviews</a>
+                      <a href="/dashboard/reviews">Reviews</a>
                     </li>
                     <li>
                       <a href="dashboard-manage-jobs.html">Gigs</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="/manage-gigs">Manage Gigs</a>
+                          <a href="/dashboard/manage-gigs">Manage Gigs</a>
                         </li>
                         <li>
-                          <a href="/manage-candidates">
+                          <a href="/dashboard/manage-candidates">
                             Manage Candidates
                           </a>
                         </li>
                         <li>
-                          <a href="/post-gig">Post a Gig</a>
+                          <a href="/dashboard/post-gig">Post a Gig</a>
                         </li>
                       </ul>
                     </li>
@@ -198,25 +193,25 @@ const Navbar = (props) => {
                       <a href="dashboard-manage-tasks.html">Tasks</a>
                       <ul className="dropdown-nav">
                         <li>
-                          <a href="/manage-tasks">Manage Tasks</a>
+                          <a href="/dashboard/manage-tasks">Manage Tasks</a>
                         </li>
                         <li>
-                          <a href="/manage-bidders">
+                          <a href="/dashboard/manage-bidders">
                             Manage Bidders
                           </a>
                         </li>
                         <li>
-                          <a href="/active-bids">
+                          <a href="/dashboard/active-bids">
                             My Active Bids
                           </a>
                         </li>
                         <li>
-                          <a href="/post-task">Post a Task</a>
+                          <a href="/dashboard/post-task">Post a Task</a>
                         </li>
                       </ul>
                     </li>
                     <li>
-                      <a href="/settings">Settings</a>
+                      <a href="/dashboard/settings">Settings</a>
                     </li>
                   </ul>
                 </li>
@@ -288,6 +283,18 @@ const Navbar = (props) => {
                     </li>
                   </ul>
                 </li>
+                <li>
+                      <a href="/login">Login</a>
+                    </li>
+                    <li>
+                      <a href="/register">Create account</a>
+                    </li>
+                {/* <li style={{borderLeft: '1px solid #e0e0e0'}}>
+                  <ul>
+
+                   
+                  </ul>
+                </li> */}
               </ul>
             </nav>
           </div>

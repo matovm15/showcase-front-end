@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const useTitle = (title) => {
-  let defaultTitle = "Show Case";
+  let defaultTitle = "showcase";
 
   useEffect(() => {
     document.title = `${title} | ${defaultTitle}` || defaultTitle;

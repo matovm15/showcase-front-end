@@ -1,21 +1,53 @@
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Layout from "../components/Layout";
 import { registerSchema } from "../utils/validations";
 import useTitle from "../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userRegister } from "../actions/users";
 
 const Register = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [formData, setFormData] = useState({
+    first_name:'',
+    last_name: '',
+    email: '',
+    role: 'freelancer',
+    password: '',
+    confirmPassword: ''
+  })
   useTitle("Register");
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(registerSchema),
-  });
+  // const { register, handleSubmit, formState } = useForm({
+  //   resolver: yupResolver(registerSchema),
+  // });
 
-  const { errors } = formState;
+  // const { errors } = formState;
 
-  const handleRegister = (data) => {
-    console.log(data);
+  const {first_name, last_name,email, password, confirmPassword} = formData
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    dispatch(userRegister(formData, navigate))
+
+    setFormData({
+      ...formData,
+      password: '',
+      confirmPassword: ''
+    })
+    // navigate('/register/create-profile/freelancer')
   };
+
+
+  const onChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  }
+
+  
   return (
     <Layout>
       <div id="titlebar" className="gradient">
@@ -50,8 +82,10 @@ const Register = () => {
                 <div>
                   <input
                     type="radio"
-                    name="account-type-radio"
+                    name="role"
                     id="freelancer-radio"
+                    value={'freelancer'}
+                    onClick={onChange}
                     className="account-type-radio"
                     defaultChecked
                   />
@@ -67,7 +101,9 @@ const Register = () => {
                 <div>
                   <input
                     type="radio"
-                    name="account-type-radio"
+                    name="role"
+                    value={'employer'}
+                    onClick={onChange}
                     id="employer-radio"
                     className="account-type-radio"
                   />
@@ -82,25 +118,75 @@ const Register = () => {
               </div>
 
               <form
-                onSubmit={handleSubmit(handleRegister)}
+                onSubmit={onSubmit}
                 id="register-account-form"
               >
-                <div className="input-with-icon-left">
+                 <div className="input-with-icon-left">
                   <i className="icon-material-baseline-mail-outline"></i>
-                  <input
-                    type="email"
-                    className={`input-text with-border ${
+                  {/* Email Error */}
+                  {/* ${
                       errors.email ? "is-invalid" : ""
-                    }`}
-                    id="emailaddress-register"
-                    placeholder="Email Address"
-                    {...register("email")}
+                    } */}
+                    {/* {...register("email")} */}
+                  <input
+                    type="text"
+                    name="first_name"
+                    className={'input-text with-border'}
+                    id="first_name-register"
+                    value={first_name}
+                    placeholder="First name"
+                    onChange={onChange}
                   />
-                  {errors.email && (
+                  {/* {errors.email && (
                     <div className="invalid-feedback">
                       {errors.email.message}
                     </div>
-                  )}
+                  )} */}
+                </div>
+                 <div className="input-with-icon-left">
+                  <i className="icon-material-baseline-mail-outline"></i>
+                  {/* Email Error */}
+                  {/* ${
+                      errors.email ? "is-invalid" : ""
+                    } */}
+                    {/* {...register("email")} */}
+                  <input
+                    type="text"
+                    name="last_name"
+                    className={'input-text with-border'}
+                    id="last_name-register"
+                    value={last_name}
+                    placeholder="Last name"
+                    onChange={onChange}
+                  />
+                  {/* {errors.email && (
+                    <div className="invalid-feedback">
+                      {errors.email.message}
+                    </div>
+                  )} */}
+                </div>
+
+                <div className="input-with-icon-left">
+                  <i className="icon-material-baseline-mail-outline"></i>
+                  {/* Email Error */}
+                  {/* ${
+                      errors.email ? "is-invalid" : ""
+                    } */}
+                    {/* {...register("email")} */}
+                  <input
+                    type="email"
+                    name="email"
+                    className={'input-text with-border'}
+                    id="email-register"
+                    value={email}
+                    placeholder="Email Address"
+                    onChange={onChange}
+                  />
+                  {/* {errors.email && (
+                    <div className="invalid-feedback">
+                      {errors.email.message}
+                    </div>
+                  )} */}
                 </div>
 
                 <div
@@ -110,38 +196,49 @@ const Register = () => {
                   data-original-title="Should be at least 8 characters long"
                 >
                   <i className="icon-material-outline-lock"></i>
+                  {/* ${
+                      errors.password ? "is-invalid" : ""
+                    } */}
+                    {/* {...register("password")} */}
+
                   <input
                     type="password"
-                    className={`input-text with-border ${
-                      errors.password ? "is-invalid" : ""
-                    }`}
+                    name='password'
+                    className={`input-text with-border`}
                     id="password-register"
+                    value={password}
                     placeholder="Password"
-                    {...register("password")}
+                    onChange={onChange}
                   />
-                  {errors.password && (
+                  {/* {errors.password && (
                     <div className="invalid-feedback">
                       {errors.password.message}
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div className="input-with-icon-left">
                   <i className="icon-material-outline-lock"></i>
+
+                  {/* ${
+                      errors.confirmPassword ? "is-invalid" : ""
+                    } */}
+                    {/* {...register("confirmPassword")} */}
+
                   <input
                     type="password"
-                    className={`"input-text with-border" ${
-                      errors.confirmPassword ? "is-invalid" : ""
-                    }`}
+                    name='confirmPassword'
+                    className={"input-text with-border"}
                     id="password-repeat-register"
+                    value={confirmPassword}
+                    onChange={onChange}
                     placeholder="Repeat Password"
-                    {...register("confirmPassword")}
                   />
-                  {errors.confirmPassword && (
+                  {/* {errors.confirmPassword && (
                     <div className="invalid-feedback">
                       {errors.confirmPassword.message}
                     </div>
-                  )}
+                  )} */}
                 </div>
 
               </form>

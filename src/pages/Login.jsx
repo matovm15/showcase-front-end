@@ -1,21 +1,41 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../utils/validations";
+import { useState } from "react";
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import { loginSchema } from "../utils/validations";
 import Layout from "../components/Layout";
 import useTitle from "../hooks/useTitle";
+import { userLogin } from "../actions/users";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   useTitle("Login");
-  const { register, handleSubmit, formState } = useForm({
-    resolver: yupResolver(loginSchema),
-  });
 
-  const { errors } = formState;
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleLogin = (data) => {
-    console.log(data);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const {email, password} = formData
+  // const { register, handleSubmit, formState } = useForm({
+  //   resolver: yupResolver(loginSchema),
+  // });
+
+  // const { errors } = formState;
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    dispatch(userLogin(formData, navigate))
   };
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  }
   return (
     <Layout>
       <div id="titlebar" className="gradient">
@@ -47,43 +67,51 @@ const Login = () => {
                 </span>
               </div>
 
-              <form onSubmit={handleSubmit(handleLogin)} id="login-form">
+              <form onSubmit={handleSubmit} id="login-form">
                 <div className="input-with-icon-left">
                   <i className="icon-material-baseline-mail-outline"></i>
+
+                  {/* ${
+                      errors.email ? "is-invalid" : ""
+                    }`} */}
                   <input
                     type="text"
-                    className={`input-text with-border ${
-                      errors.email ? "is-invalid" : ""
-                    }`}
-                    name="emailaddress"
+                    className='input-text with-border'
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
                     id="emailaddress"
                     placeholder="Email Address"
-                    {...register("email")}
-                  />
-                  {errors.email && (
+                    />
+                    {/* {...register("email")} */}
+                  {/* {errors.email && (
                     <div className="invalid-feedback">
                       {errors.email.message}
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <div className="input-with-icon-left">
                   <i className="icon-material-outline-lock"></i>
+                  
+                  {/* ${
+                      errors.password ? "is-invalid" : ""
+                    }`} */}
                   <input
                     type="password"
-                    className={`input-text with-border ${
-                      errors.password ? "is-invalid" : ""
-                    }`}
+                    className='input-text with-border'
                     name="password"
+                    value={password}
+                    onChange={handleChange}
                     id="password"
                     placeholder="Password"
-                    {...register("password")}
-                  />
-                  {errors.password && (
+                    />
+                    {/* {...register("password")} */}
+                  {/* {errors.password && (
                     <div className="invalid-feedback">
                       {errors.password.message}
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <a href="#" className="forgot-password">
                   Forgot Password?
