@@ -3,17 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    accessToken: localStorage.getItem("access_token") || null,
-    refreshToken: localStorage.getItem("refresh_token") || null,
+    accessToken: JSON.parse(localStorage.getItem("accessToken")) || null,
+    refreshToken: JSON.parse(localStorage.getItem("refreshToken")) || null,
     user: null,
   },
   reducers: {
     setCredentials: (state, action) => {
-      state.accessToken = action.payload.access_token;
-      state.refreshToken = action.payload.refresh_token;
+      console.log("setCredentials", action.payload);
+      state.accessToken = action.payload.tokens.access;
+      state.refreshToken = action.payload.tokens.refresh;
       state.user = action.payload.user;
-      localStorage.setItem("access_token", action.payload.access_token);
-      localStorage.setItem("refresh_token", action.payload.refresh_token);
+      localStorage.setItem("access_token", JSON.stringify(action.payload.tokens.access));
+      localStorage.setItem("refresh_token", JSON.stringify(action.payload.tokens.refresh));
     },
     logout: (state) => {
       state.accessToken = null;

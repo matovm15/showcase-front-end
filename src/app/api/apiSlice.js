@@ -17,11 +17,33 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
-  //   TODO: Handle expired token
+
+  if (result.error) {
+    const { init, response } = result.error;
+    if (
+      response?.status === 401 &&
+      response?.data?.message === "Token expired"
+    ) {
+      const refreshToken = JSON.parse(localStorage.getItem("refresh_token")).token;
+      if (refreshToken) {
+        const refreshResult = await baseQuery(
+          { url: "/auth/refresh", method: "POST", body },
+          api,
+          extraOptions
+        );
+        if (refreshResult.data) {
+          api.dispatch(setCredentials(refreshResult.data));
+          return baseQuery(args, api, extraOptions);
+        }
+      }
+    }
+  }
+
+  return result;
 };
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReAuth,
   endpoints: (builder) => ({}),
-  tagTypes: [], //TODO: Add tag types
+  tagTypes: ["Users"], //TODO: Add tag types
 });

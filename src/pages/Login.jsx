@@ -4,17 +4,38 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../utils/validations";
 import Layout from "../components/Layout";
 import useTitle from "../hooks/useTitle";
+import { useLoginMutation } from "../features/auth/authApiSlice";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   useTitle("Login");
+  const [error, setError] = React.useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
   const { errors } = formState;
 
-  const handleLogin = (data) => {
-    console.log(data);
+  const [login, { isLoading, isSuccess }] = useLoginMutation();
+
+  const handleLogin = async (data) => {
+    setError(null);
+    try {
+      const { tokens, user } = await login(data).unwrap();
+      dispatch(setCredentials({ tokens, user }));
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      if (parseInt(error.status) != error.status) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(error?.data?.message);
+      }
+    }
   };
   return (
     <Layout>
@@ -45,6 +66,7 @@ const Login = () => {
                 <span>
                   Don't have an account? <a href="/register">Sign Up!</a>
                 </span>
+                {error && <span className="notification error closeable">{error}</span>}
               </div>
 
               <form onSubmit={handleSubmit(handleLogin)} id="login-form">
@@ -96,7 +118,14 @@ const Login = () => {
                 form="login-form"
                 style={{ width: "504.156px" }}
               >
-                Log In <i className="icon-material-outline-arrow-right-alt"></i>
+                {isLoading ? (
+                  <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  "Log In"
+                )}
+                <i className="icon-material-outline-arrow-right-alt"></i>
               </button>
 
               <div className="social-login-separator">
