@@ -66,7 +66,16 @@ const Login = () => {
                 <span>
                   Don't have an account? <a href="/register">Sign Up!</a>
                 </span>
-                {error && <span className="notification error closeable">{error}</span>}
+                {error && (
+                  <div className="notification error closeable">
+                    <p>{error}</p>
+                    <a
+                      onClick={() => setError(null)}
+                      className="close"
+                      href="#"
+                    ></a>
+                  </div>
+                )}
               </div>
 
               <form onSubmit={handleSubmit(handleLogin)} id="login-form">

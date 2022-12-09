@@ -4,17 +4,39 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Layout from "../components/Layout";
 import { registerSchema } from "../utils/validations";
 import useTitle from "../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useRegisterUserMutation } from "../features/auth/authApiSlice";
 
 const Register = () => {
   useTitle("Register");
+  const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(registerSchema),
   });
 
   const { errors } = formState;
 
-  const handleRegister = (data) => {
-    console.log(data);
+  const [registerUser, { isLoading, isSuccess }] = useRegisterUserMutation();
+
+  const handleRegister = async (data) => {
+    setError(null);
+    try {
+      const { tokens, user } = await registerUser({
+        ...data,
+        role: "user",
+      }).unwrap();
+      dispatch(setCredentials({ tokens, user }));
+      navigate("/dashboard");
+    } catch (error) {
+      if (parseInt(error.status) != error.status) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(error?.data?.message);
+      }
+    }
   };
   return (
     <Layout>
@@ -44,6 +66,16 @@ const Register = () => {
                 <span>
                   Already have an account? <a href="/login">Log In!</a>
                 </span>
+                {error && (
+                  <div className="notification error closeable">
+                    <p>{error}</p>
+                    <a
+                      onClick={() => setError(null)}
+                      className="close"
+                      href="#"
+                    ></a>
+                  </div>
+                )}
               </div>
 
               <div className="account-type">
@@ -85,6 +117,42 @@ const Register = () => {
                 onSubmit={handleSubmit(handleRegister)}
                 id="register-account-form"
               >
+                <div className="input-with-icon-left">
+                  <i className="icon-material-outline-account-circle"></i>
+                  <input
+                    type="text"
+                    className={`input-text with-border ${
+                      errors.first_name ? "is-invalid" : ""
+                    }`}
+                    name="first_name"
+                    id="first_name"
+                    placeholder="First Name"
+                    {...register("first_name")}
+                  />
+                  {errors.first_name && (
+                    <div className="invalid-feedback">
+                      {errors.first_name.message}
+                    </div>
+                  )}
+                </div>
+                <div className="input-with-icon-left">
+                  <i className="icon-feather-user"></i>
+                  <input
+                    type="text"
+                    className={`input-text with-border ${
+                      errors.last_name ? "is-invalid" : ""
+                    }`}
+                    name="last_name"
+                    id="last_name"
+                    placeholder="Last Name"
+                    {...register("last_name")}
+                  />
+                  {errors.first_name && (
+                    <div className="invalid-feedback">
+                      {errors.last_name.message}
+                    </div>
+                  )}
+                </div>
                 <div className="input-with-icon-left">
                   <i className="icon-material-baseline-mail-outline"></i>
                   <input
@@ -143,7 +211,6 @@ const Register = () => {
                     </div>
                   )}
                 </div>
-
               </form>
               <button
                 className="button full-width button-sliding-icon ripple-effect margin-top-10"
