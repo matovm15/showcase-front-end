@@ -7,10 +7,13 @@ import useTitle from "../hooks/useTitle";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
   useTitle("Login");
+  // get redirect from url
+  const [searchParams, setSearchParams] = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [error, setError] = React.useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ const Login = () => {
     try {
       const { tokens, user } = await login(data).unwrap();
       dispatch(setCredentials({ tokens, user }));
-      navigate("/dashboard");
+      navigate(redirect ? redirect : "/dashboard");
     } catch (error) {
       console.log(error);
       if (parseInt(error.status) != error.status) {
