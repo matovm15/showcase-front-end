@@ -15,11 +15,11 @@ import ManageBidders from "./pages/ManageBidders";
 import ActiveBids from "./pages/ActiveBids";
 import PostTask from "./pages/PostTask";
 import Settings from "./pages/Settings";
-import FindFreelancers from "./pages/FindFreelancers"
+import FindFreelancers from "./pages/FindFreelancers";
 import FreelancerProfile from "./pages/FreelancerProfile";
 import BrowseGigs from "./pages/BrowseGigs";
 import Bid from "./pages/Bid";
-import CreateAccount from "./pages/CreateAccount";
+import CreateProfile from "./pages/CreateProfile";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register">
           <Route index element={<Register/>} />
-          <Route path='create-profile/:user' element={<CreateAccount />} />
+          <Route path='create-profile/:user' element={<CreateProfile />} />
         </Route>
         <Route path="/freelancers" element={<Freelancers />} />
         <Route path="/dashboard">
@@ -46,14 +46,12 @@ const App = () => {
           <Route path="post-task" element={<PostTask />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-      <Route path='/find-freelancers' element={<FindFreelancers />} />
-      <Route path='/freelancer-profile' element={<FreelancerProfile />} />
-      <Route path='/gigs'>
-      <Route path='browse' element={<BrowseGigs />} />
-      <Route path='view-bid' element={<Bid />} />
-
-      </Route>
-      
+        <Route path="/find-freelancers" element={<FindFreelancers />} />
+        <Route path="/freelancer-profile" element={<FreelancerProfile />} />
+        <Route path="/gigs">
+          <Route path="browse" element={<BrowseGigs />} />
+          <Route path="view-bid" element={<Bid />} />
+        </Route>
       </Routes>
     </Router>
   );

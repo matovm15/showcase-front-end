@@ -1,41 +1,42 @@
 import React from "react";
-import { useState } from "react";
-// import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import { loginSchema } from "../utils/validations";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../utils/validations";
 import Layout from "../components/Layout";
 import useTitle from "../hooks/useTitle";
-import { userLogin } from "../actions/users";
-import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   useTitle("Login");
+  const [error, setError] = React.useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const { errors } = formState;
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
+  const [login, { isLoading, isSuccess }] = useLoginMutation();
 
-  const {email, password} = formData
-  // const { register, handleSubmit, formState } = useForm({
-  //   resolver: yupResolver(loginSchema),
-  // });
-
-  // const { errors } = formState;
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    dispatch(userLogin(formData, navigate))
+  const handleLogin = async (data) => {
+    setError(null);
+    try {
+      const { tokens, user } = await login(data).unwrap();
+      dispatch(setCredentials({ tokens, user }));
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      if (parseInt(error.status) != error.status) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(error?.data?.message);
+      }
+    }
   };
-
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
-  }
   return (
     <Layout>
       <div id="titlebar" className="gradient">
@@ -65,53 +66,55 @@ const Login = () => {
                 <span>
                   Don't have an account? <a href="/register">Sign Up!</a>
                 </span>
+                {error && (
+                  <div className="notification error closeable">
+                    <p>{error}</p>
+                    <a
+                      onClick={() => setError(null)}
+                      className="close"
+                      href="#"
+                    ></a>
+                  </div>
+                )}
               </div>
 
-              <form onSubmit={handleSubmit} id="login-form">
+              <form onSubmit={handleSubmit(handleLogin)} id="login-form">
                 <div className="input-with-icon-left">
                   <i className="icon-material-baseline-mail-outline"></i>
-
-                  {/* ${
-                      errors.email ? "is-invalid" : ""
-                    }`} */}
                   <input
                     type="text"
-                    className='input-text with-border'
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
+                    className={`input-text with-border ${
+                      errors.email ? "is-invalid" : ""
+                    }`}
+                    name="emailaddress"
                     id="emailaddress"
                     placeholder="Email Address"
-                    />
-                    {/* {...register("email")} */}
-                  {/* {errors.email && (
+                    {...register("email")}
+                  />
+                  {errors.email && (
                     <div className="invalid-feedback">
                       {errors.email.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
 
                 <div className="input-with-icon-left">
                   <i className="icon-material-outline-lock"></i>
-                  
-                  {/* ${
-                      errors.password ? "is-invalid" : ""
-                    }`} */}
                   <input
                     type="password"
-                    className='input-text with-border'
+                    className={`input-text with-border ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     name="password"
-                    value={password}
-                    onChange={handleChange}
                     id="password"
                     placeholder="Password"
-                    />
-                    {/* {...register("password")} */}
-                  {/* {errors.password && (
+                    {...register("password")}
+                  />
+                  {errors.password && (
                     <div className="invalid-feedback">
                       {errors.password.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
                 <a href="#" className="forgot-password">
                   Forgot Password?
@@ -124,7 +127,14 @@ const Login = () => {
                 form="login-form"
                 style={{ width: "504.156px" }}
               >
-                Log In <i className="icon-material-outline-arrow-right-alt"></i>
+                {isLoading ? (
+                  <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  "Log In"
+                )}
+                <i className="icon-material-outline-arrow-right-alt"></i>
               </button>
 
               <div className="social-login-separator">

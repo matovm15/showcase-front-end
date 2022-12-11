@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Layout from "../components/Layout";
@@ -6,48 +6,43 @@ import { registerSchema } from "../utils/validations";
 import useTitle from "../hooks/useTitle";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userRegister } from "../actions/users";
+import { setCredentials } from "../features/auth/authSlice";
+import { useRegisterUserMutation } from "../features/auth/authApiSlice";
 
 const Register = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const [formData, setFormData] = useState({
-    first_name:'',
-    last_name: '',
-    email: '',
-    role: 'freelancer',
-    password: '',
-    confirmPassword: ''
-  })
   useTitle("Register");
-  // const { register, handleSubmit, formState } = useForm({
-  //   resolver: yupResolver(registerSchema),
-  // });
+  const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
 
-  // const { errors } = formState;
+  const { errors } = formState;
 
-  const {first_name, last_name,email, password, confirmPassword} = formData
+  const [registerUser, { isLoading, isSuccess }] = useRegisterUserMutation();
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-
-    dispatch(userRegister(formData, navigate))
-
-    setFormData({
-      ...formData,
-      password: '',
-      confirmPassword: ''
-    })
-    // navigate('/register/create-profile/freelancer')
+  const handleRegister = async (data) => {
+    setError(null);
+    try {
+      const { tokens, user } = await registerUser({
+        ...data,
+      }).unwrap();
+      dispatch(setCredentials({ tokens, user }));
+      if(user.role === 'freelancer'){
+        console.log(user)
+        navigate(`/register/create-profile/${user.id}`);
+      }else{
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      if (parseInt(error.status) != error.status) {
+        setError("Something went wrong. Please try again later.");
+      } else {
+        setError(error?.data?.message);
+      }
+    }
   };
-
-
-  const onChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
-  }
-
-  
   return (
     <Layout>
       <div id="titlebar" className="gradient">
@@ -76,18 +71,28 @@ const Register = () => {
                 <span>
                   Already have an account? <a href="/login">Log In!</a>
                 </span>
+                {error && (
+                  <div className="notification error closeable">
+                    <p>{error}</p>
+                    <a
+                      onClick={() => setError(null)}
+                      className="close"
+                      href="#"
+                    ></a>
+                  </div>
+                )}
               </div>
 
               <div className="account-type">
                 <div>
                   <input
                     type="radio"
-                    name="role"
+                    name="account-type-radio"
                     id="freelancer-radio"
-                    value={'freelancer'}
-                    onClick={onChange}
                     className="account-type-radio"
+                    value={'freelancer'}
                     defaultChecked
+                    {...register("role")}
                   />
                   <label
                     htmlFor="freelancer-radio"
@@ -101,11 +106,11 @@ const Register = () => {
                 <div>
                   <input
                     type="radio"
-                    name="role"
-                    value={'employer'}
-                    onClick={onChange}
+                    name="account-type-radio"
                     id="employer-radio"
                     className="account-type-radio"
+                    value={'employer'}
+                    {...register("role")}
                   />
                   <label
                     htmlFor="employer-radio"
@@ -118,75 +123,61 @@ const Register = () => {
               </div>
 
               <form
-                onSubmit={onSubmit}
+                onSubmit={handleSubmit(handleRegister)}
                 id="register-account-form"
               >
-                 <div className="input-with-icon-left">
-                  <i className="icon-material-baseline-mail-outline"></i>
-                  {/* Email Error */}
-                  {/* ${
-                      errors.email ? "is-invalid" : ""
-                    } */}
-                    {/* {...register("email")} */}
+                <div className="input-with-icon-left">
+                  <i className="icon-material-outline-account-circle"></i>
                   <input
                     type="text"
+                    className={`input-text with-border ${
+                      errors.first_name ? "is-invalid" : ""
+                    }`}
                     name="first_name"
-                    className={'input-text with-border'}
-                    id="first_name-register"
-                    value={first_name}
-                    placeholder="First name"
-                    onChange={onChange}
+                    id="first_name"
+                    placeholder="First Name"
+                    {...register("first_name")}
                   />
-                  {/* {errors.email && (
+                  {errors.first_name && (
                     <div className="invalid-feedback">
-                      {errors.email.message}
+                      {errors.first_name.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
-                 <div className="input-with-icon-left">
-                  <i className="icon-material-baseline-mail-outline"></i>
-                  {/* Email Error */}
-                  {/* ${
-                      errors.email ? "is-invalid" : ""
-                    } */}
-                    {/* {...register("email")} */}
+                <div className="input-with-icon-left">
+                  <i className="icon-feather-user"></i>
                   <input
                     type="text"
+                    className={`input-text with-border ${
+                      errors.last_name ? "is-invalid" : ""
+                    }`}
                     name="last_name"
-                    className={'input-text with-border'}
-                    id="last_name-register"
-                    value={last_name}
-                    placeholder="Last name"
-                    onChange={onChange}
+                    id="last_name"
+                    placeholder="Last Name"
+                    {...register("last_name")}
                   />
-                  {/* {errors.email && (
+                  {errors.first_name && (
                     <div className="invalid-feedback">
-                      {errors.email.message}
+                      {errors.last_name.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
-
                 <div className="input-with-icon-left">
                   <i className="icon-material-baseline-mail-outline"></i>
-                  {/* Email Error */}
-                  {/* ${
-                      errors.email ? "is-invalid" : ""
-                    } */}
-                    {/* {...register("email")} */}
                   <input
                     type="email"
-                    name="email"
-                    className={'input-text with-border'}
-                    id="email-register"
-                    value={email}
+                    className={`input-text with-border ${
+                      errors.email ? "is-invalid" : ""
+                    }`}
+                    id="emailaddress-register"
                     placeholder="Email Address"
-                    onChange={onChange}
+                    {...register("email")}
                   />
-                  {/* {errors.email && (
+                  {errors.email && (
                     <div className="invalid-feedback">
                       {errors.email.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
 
                 <div
@@ -196,51 +187,39 @@ const Register = () => {
                   data-original-title="Should be at least 8 characters long"
                 >
                   <i className="icon-material-outline-lock"></i>
-                  {/* ${
-                      errors.password ? "is-invalid" : ""
-                    } */}
-                    {/* {...register("password")} */}
-
                   <input
                     type="password"
-                    name='password'
-                    className={`input-text with-border`}
+                    className={`input-text with-border ${
+                      errors.password ? "is-invalid" : ""
+                    }`}
                     id="password-register"
-                    value={password}
                     placeholder="Password"
-                    onChange={onChange}
+                    {...register("password")}
                   />
-                  {/* {errors.password && (
+                  {errors.password && (
                     <div className="invalid-feedback">
                       {errors.password.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
 
                 <div className="input-with-icon-left">
                   <i className="icon-material-outline-lock"></i>
-
-                  {/* ${
-                      errors.confirmPassword ? "is-invalid" : ""
-                    } */}
-                    {/* {...register("confirmPassword")} */}
-
                   <input
                     type="password"
-                    name='confirmPassword'
-                    className={"input-text with-border"}
+                    className={`"input-text with-border" ${
+                      errors.confirmPassword ? "is-invalid" : ""
+                    }`}
                     id="password-repeat-register"
-                    value={confirmPassword}
-                    onChange={onChange}
                     placeholder="Repeat Password"
+                    {...register("confirmPassword")}
                   />
-                  {/* {errors.confirmPassword && (
+                  {errors.confirmPassword && (
                     <div className="invalid-feedback">
                       {errors.confirmPassword.message}
                     </div>
-                  )} */}
+                  )}
                 </div>
-
               </form>
               <button
                 className="button full-width button-sliding-icon ripple-effect margin-top-10"
@@ -248,7 +227,14 @@ const Register = () => {
                 form="register-account-form"
                 style={{ width: "504.156px" }}
               >
-                Register{" "}
+                {isLoading ? (
+                  <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  'Register'
+                )}
+                
                 <i className="icon-material-outline-arrow-right-alt"></i>
               </button>
 

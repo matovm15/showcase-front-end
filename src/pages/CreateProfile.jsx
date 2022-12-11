@@ -5,13 +5,18 @@ import { createprofile } from "../actions/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FileBase64 from "react-file-base64";
+import { selectUser } from "../features/auth/authSlice";
 
 const CreateAccount = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {id} = useSelector(state => state.user.user)
+    const {
+        user
+    } = selectUser() 
+       
+    console.log(user)
 
     const [formData, setFormData] = useState({
         avatar: '',
