@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    accessToken: JSON.parse(localStorage.getItem("accessToken")) || null,
-    refreshToken: JSON.parse(localStorage.getItem("refreshToken")) || null,
+    accessToken: JSON.parse(localStorage.getItem("access_token")) || null,
+    refreshToken: JSON.parse(localStorage.getItem("refresh_token")) || null,
     user: null,
   },
   reducers: {
