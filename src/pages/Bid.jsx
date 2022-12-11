@@ -137,7 +137,7 @@ const Bid = () => {
 			<!-- Right Side Content / End --> */}
 			<div class="right-side">
 
-				{/* <!--  User Notifications --> */}
+				{/* <!--  User ktifications --> */}
 				<div class="header-widget hide-on-mobile">
 					
 					{/* <!-- Notifications --> */}

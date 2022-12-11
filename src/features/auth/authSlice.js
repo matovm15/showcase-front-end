@@ -13,8 +13,15 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.tokens.access;
       state.refreshToken = action.payload.tokens.refresh;
       state.user = action.payload.user;
-      localStorage.setItem("access_token", JSON.stringify(action.payload.tokens.access));
-      localStorage.setItem("refresh_token", JSON.stringify(action.payload.tokens.refresh));
+      localStorage.setItem(
+        "access_token",
+        JSON.stringify(action.payload.tokens.access)
+      );
+      localStorage.setItem(
+        "refresh_token",
+        JSON.stringify(action.payload.tokens.refresh)
+      );
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     logout: (state) => {
       state.accessToken = null;

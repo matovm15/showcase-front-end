@@ -6,6 +6,7 @@ import { registerSchema } from "../utils/validations";
 import useTitle from "../hooks/useTitle";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/auth/authSlice";
 import { useRegisterUserMutation } from "../features/auth/authApiSlice";
 
 const Register = () => {
@@ -26,10 +27,14 @@ const Register = () => {
     try {
       const { tokens, user } = await registerUser({
         ...data,
-        role: "user",
       }).unwrap();
       dispatch(setCredentials({ tokens, user }));
-      navigate("/dashboard");
+      if(user.role === 'freelancer'){
+        console.log(user)
+        navigate(`/register/create-profile/${user.id}`);
+      }else{
+        navigate("/dashboard");
+      }
     } catch (error) {
       if (parseInt(error.status) != error.status) {
         setError("Something went wrong. Please try again later.");
@@ -85,7 +90,9 @@ const Register = () => {
                     name="account-type-radio"
                     id="freelancer-radio"
                     className="account-type-radio"
+                    value={'freelancer'}
                     defaultChecked
+                    {...register("role")}
                   />
                   <label
                     htmlFor="freelancer-radio"
@@ -102,6 +109,8 @@ const Register = () => {
                     name="account-type-radio"
                     id="employer-radio"
                     className="account-type-radio"
+                    value={'employer'}
+                    {...register("role")}
                   />
                   <label
                     htmlFor="employer-radio"
@@ -218,7 +227,14 @@ const Register = () => {
                 form="register-account-form"
                 style={{ width: "504.156px" }}
               >
-                Register{" "}
+                {isLoading ? (
+                  <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  'Register'
+                )}
+                
                 <i className="icon-material-outline-arrow-right-alt"></i>
               </button>
 

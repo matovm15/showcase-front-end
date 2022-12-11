@@ -69,7 +69,7 @@ const Footer = () => {
                     </div>
                   </div>
 
-                  <div className="footer-row">
+                  {/* <div className="footer-row">
                     <div className="footer-row-inner">
                       <div className="btn-group bootstrap-select language-switcher">
                         <button
@@ -158,7 +158,7 @@ const Footer = () => {
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -170,11 +170,11 @@ const Footer = () => {
           <div className="row">
             <div className="col-xl-2 col-lg-2 col-md-3">
               <div className="footer-links">
-                <h3>For Candidates</h3>
+                <h3>For Freelancers</h3>
                 <ul>
                   <li>
                     <a href="#">
-                      <span>Browse Jobs</span>
+                      <span>Browse Gigs</span>
                     </a>
                   </li>
                   <li>
@@ -184,7 +184,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#">
-                      <span>Job Alerts</span>
+                      <span>Gig Alerts</span>
                     </a>
                   </li>
                   <li>
@@ -201,22 +201,22 @@ const Footer = () => {
                 <ul>
                   <li>
                     <a href="#">
-                      <span>Browse Candidates</span>
+                      <span>Browse Freelancers</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <span>Post a Job</span>
+                      <span>Post a Gig</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <span>Post a Task</span>
+                      <span>My bids</span>
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <span>Plans &amp; Pricing</span>
+                      <span>Manage Bidders</span>
                     </a>
                   </li>
                 </ul>
@@ -226,6 +226,11 @@ const Footer = () => {
               <div className="footer-links">
                 <h3>Helpful Links</h3>
                 <ul>
+                  <li>
+                    <a href="#">
+                      <span>Blog</span>
+                    </a>
+                  </li>
                   <li>
                     <a href="#">
                       <span>Contact</span>
@@ -251,6 +256,11 @@ const Footer = () => {
                   <li>
                     <a href="#">
                       <span>Log In</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span>Create account</span>
                     </a>
                   </li>
                   <li>
@@ -287,7 +297,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-xl-12">
-              © {new Date().getFullYear()} <strong>Show Case</strong>. All
+              © {new Date().getFullYear()} <strong>showcase</strong>. All
               Rights Reserved.
             </div>
           </div>
