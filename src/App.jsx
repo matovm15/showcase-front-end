@@ -1,4 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  createBrowserRouter as Router,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -19,38 +22,61 @@ import FindFreelancers from "./pages/FindFreelancers";
 import FreelancerProfile from "./pages/FreelancerProfile";
 import BrowseGigs from "./pages/BrowseGigs";
 import Bid from "./pages/Bid";
+import RequireAuth from "./features/auth/RequireAuth";
+import Prefetch from "./features/auth/Prefetch";
+import RequireNoAuth from "./features/auth/RequireNoAuth";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/freelancers" element={<Freelancers />} />
-        <Route path="/dashboard">
-          <Route index element={<Dashboard />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="bookmarks" element={<Bookmarks />} />
-          <Route path="reviews" element={<Reviews />} />
-          <Route path="manage-gigs" element={<ManageJobs />} />
-          <Route path="manage-candidates" element={<ManageCandidates />} />
-          <Route path="post-gig" element={<PostGig />} />
-          <Route path="manage-tasks" element={<ManageTasks />} />
-          <Route path="manage-bidders" element={<ManageBidders />} />
-          <Route path="active-bids" element={<ActiveBids />} />
-          <Route path="post-task" element={<PostTask />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-        <Route path="/find-freelancers" element={<FindFreelancers />} />
-        <Route path="/freelancer-profile" element={<FreelancerProfile />} />
-        <Route path="/gigs">
-          <Route path="browse" element={<BrowseGigs />} />
-          <Route path="view-bid" element={<Bid />} />
-        </Route>
-      </Routes>
-    </Router>
-  );
+  const router = Router([
+    {
+      path: "/",
+      element: <RequireNoAuth />,
+      errorElement: <NotFound />,
+      children: [
+        { path: "", element: <Home /> },
+        { path: "login", element: <Login /> },
+        { path: "register", element: <Register /> },
+        { path: "freelancers", element: <Freelancers /> },
+        { path: "/find-freelancers", element: <FindFreelancers /> },
+        { path: "/freelancer-profile", element: <FreelancerProfile /> },
+        {
+          path: "/gigs",
+          children: [
+            { path: "browse", element: <BrowseGigs /> },
+            { path: "view-bid", element: <Bid /> },
+          ],
+        },
+      ],
+    },
+    {
+      path: "/dashboard",
+      element: <RequireAuth />,
+      children: [
+        {
+          path: "",
+          element: <Prefetch />,
+          errorElement: <NotFound />,
+          children: [
+            { path: "", element: <Dashboard /> },
+            { path: "messages", element: <Messages /> },
+            { path: "bookmarks", element: <Bookmarks /> },
+            { path: "reviews", element: <Reviews /> },
+            { path: "manage-gigs", element: <ManageJobs /> },
+            { path: "manage-candidates", element: <ManageCandidates /> },
+            { path: "post-gig", element: <PostGig /> },
+            { path: "manage-tasks", element: <ManageTasks /> },
+            { path: "manage-bidders", element: <ManageBidders /> },
+            { path: "active-bids", element: <ActiveBids /> },
+            { path: "post-task", element: <PostTask /> },
+            { path: "settings", element: <Settings /> },
+          ],
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;
