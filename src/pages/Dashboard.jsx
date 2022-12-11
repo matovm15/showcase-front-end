@@ -7,9 +7,20 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
+import { useGetProfileQuery } from "../features/profile/profileApiSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
+
+  const { isLoading, data, isSuccess, isError, error } = useGetProfileQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+      pollingInterval: 60000,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
   const handleOpenNoteForm = () => {
     setOpenNoteForm(!openNoteForm);
