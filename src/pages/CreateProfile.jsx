@@ -6,17 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FileBase64 from "react-file-base64";
 import { selectUser } from "../features/auth/authSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {useForm} from 'react-hook-form'
+import { profileSchema } from "../utils/validations";
 
 const CreateAccount = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {
-        user
-    } = selectUser() 
-       
+    const user = useSelector(selectUser)
+
     console.log(user)
+
+    const {register, handleSubmit, formState} = useForm({
+        resolver: yupResolver(profileSchema) 
+    })
 
     const [formData, setFormData] = useState({
         avatar: '',
@@ -53,7 +58,7 @@ const CreateAccount = () => {
     }
 
     // On form submit
-    const handleSubmit = () => {
+    const handleSave = () => {
         dispatch(createprofile(formData, id, navigate))
         
     }
@@ -96,41 +101,7 @@ const CreateAccount = () => {
                                     {/* <input type="file"  /> */}
                                 </div>
                             </div>
-                            {/* <div className="col">
-                                <div className="row">
-                                    <div className="col-xl-6">
-                                        <div className="submit-field">
-                                            <h5>First Name</h5>
-                                            <input type="text" className="with-border" value="Tom" />
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6">
-                                        <div className="submit-field">
-                                            <h5>Last Name</h5>
-                                            <input type="text" className="with-border" value="Smith" />
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6">
-                                        <div className="submit-field">
-                                            <h5>Account Type</h5>
-                                            <div className="account-type"></div>
-                                                <input type="radio" name="account-type-radio" id="freelancer-radio" className="account-type-radio" checked="" />
-                                                <label for="freelancer-radio" className="ripple-effect-dark"><i className="icon-material-outline-account-circle"></i> Freelancer</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" name="account-type-radio" id="employer-radio" className="account-type-radio" />
-                                            <label for="employer-radio" className="ripple-effect-dark"><i className="icon-material-outline-business-center"></i> Employer</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-xl-6">
-                                <div className="submit-field">
-                                    <h5>Email</h5>
-                                    <input type="text" className="with-border" value="tom@example.com" />
-                                </div>
-                            </div> */}
+                           
                         </div>
                     </div>
                 </div>
@@ -233,44 +204,9 @@ const CreateAccount = () => {
 </div>
 </div>
 </div>
-{/* <div className="col-xl-12">
-    <div id="test1" className="dashboard-box">
-        <div className="headline">
-            <h3><i className="icon-material-outline-lock"></i> Password &amp; Security</h3>
-        </div>
-        <div className="content with-padding">
-            <div className="row"><div className="col-xl-4">
-                <div className="submit-field">
-                    <h5>Current Password</h5>
-                    <input type="password" className="with-border" />
-                </div>
-            </div>
-            <div className="col-xl-4">
-                <div className="submit-field">
-                    <h5>New Password</h5>
-                    <input type="password" className="with-border" />
-                </div>
-            </div>
-            <div className="col-xl-4">
-                <div className="submit-field">
-                    <h5>Repeat New Password</h5>
-                    <input type="password" className="with-border" />
-                </div>
-            </div>
-            <div className="col-xl-12">
-                <div className="checkbox">
-                    <input type="checkbox" id="two-step" checked="" />
-                    <label for="two-step">
-                        <span className="checkbox-icon"></span> Enable Two-Step Verification via Email
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div> */}
+
 <div className="col-xl-12">
-    <button className="button ripple-effect big margin-top-30" onClick={handleSubmit}>Save Profile</button>
+    <button className="button ripple-effect big margin-top-30" onClick={handleSave}>Save Profile</button>
 </div>
 <div className="dashboard-footer-spacer"></div>
 <div className="small-footer margin-top-15">
