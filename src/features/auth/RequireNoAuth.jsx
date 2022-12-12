@@ -4,14 +4,16 @@ import { useSelector } from "react-redux";
 import { selectAccessToken } from "./authSlice";
 
 const RequireNoAuth = () => {
-  const exceptionPaths = ["/login", "/register"];
+  const exceptionPaths = ["/find-freelancers"];
   const isLoggedIn = useSelector(selectAccessToken);
   const location = window.location.pathname;
 
 
-  if (isLoggedIn && !exceptionPaths.includes(location)) {
-    return <Navigate to="/dashboard" />;
+  if (isLoggedIn && exceptionPaths.includes(location)) {
+    return <Outlet />
   }
+
+  if(isLoggedIn) return <Navigate to={"/dashboard"} />
 
   return <Outlet />; 
 };

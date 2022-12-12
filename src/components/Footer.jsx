@@ -68,97 +68,6 @@ const Footer = () => {
                       <div className="clearfix"></div>
                     </div>
                   </div>
-
-                  {/* <div className="footer-row">
-                    <div className="footer-row-inner">
-                      <div className="btn-group bootstrap-select language-switcher">
-                        <button
-                          type="button"
-                          className="btn dropdown-toggle btn-default"
-                          data-toggle="dropdown"
-                          role="button"
-                          title="English"
-                        >
-                          <span className="filter-option pull-left">English</span>
-                          &nbsp;
-                          <span className="bs-caret">
-                            <span className="caret"></span>
-                          </span>
-                        </button>
-                        <div className="dropdown-menu open" role="combobox">
-                          <ul
-                            className="dropdown-menu inner"
-                            role="listbox"
-                            aria-expanded="false"
-                          >
-                            <li data-original-index="0" className="selected">
-                              <a
-                                tabIndex="0"
-                                className=""
-                                data-tokens="null"
-                                role="option"
-                                aria-disabled="false"
-                                aria-selected="true"
-                              >
-                                <span className="text">English</span>
-                                <span className="glyphicon glyphicon-ok check-mark"></span>
-                              </a>
-                            </li>
-                            <li data-original-index="1">
-                              <a
-                                tabIndex="0"
-                                className=""
-                                data-tokens="null"
-                                role="option"
-                                aria-disabled="false"
-                                aria-selected="false"
-                              >
-                                <span className="text">Français</span>
-                                <span className="glyphicon glyphicon-ok check-mark"></span>
-                              </a>
-                            </li>
-                            <li data-original-index="2">
-                              <a
-                                tabIndex="0"
-                                className=""
-                                data-tokens="null"
-                                role="option"
-                                aria-disabled="false"
-                                aria-selected="false"
-                              >
-                                <span className="text">Español</span>
-                                <span className="glyphicon glyphicon-ok check-mark"></span>
-                              </a>
-                            </li>
-                            <li data-original-index="3">
-                              <a
-                                tabIndex="0"
-                                className=""
-                                data-tokens="null"
-                                role="option"
-                                aria-disabled="false"
-                                aria-selected="false"
-                              >
-                                <span className="text">Deutsch</span>
-                                <span className="glyphicon glyphicon-ok check-mark"></span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <select
-                          className="selectpicker language-switcher"
-                          data-selected-text-format="count"
-                          data-size="5"
-                          tabIndex="-98"
-                        >
-                          <option defaultValue="english">English</option>
-                          <option>Français</option>
-                          <option>Español</option>
-                          <option>Deutsch</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -297,8 +206,8 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-xl-12">
-              © {new Date().getFullYear()} <strong>showcase</strong>. All
-              Rights Reserved.
+              © {new Date().getFullYear()} <strong>showcase</strong>. All Rights
+              Reserved.
             </div>
           </div>
         </div>

@@ -1,9 +1,11 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import MobileMenu from "./MobileMenu";
 import Navbar from "./Navbar";
 
 const Layout = ({ children }) => {
+  const location = useLocation()
   const [openUserMenu, setOpenUserMenu] = React.useState(false);
   const [openMobileMenu, setOpenMobileMenu] = React.useState(false);
   const [openMessageMenu, setOpenMessageMenu] = React.useState(false);
@@ -11,9 +13,10 @@ const Layout = ({ children }) => {
 
   const mobileMenuRef = React.useRef(null);
 
+  const uniquePaths = ["/find-freelancers", "/freelancer-profile", "/gigs/browse", "/gigs/view-bid"];
+
   // handle click mobile menu
   const handleClickMobileMenu = () => {
-    console.log("handleClickMobileMenu");
     // check if other menus are open and close them
     if (openUserMenu) {
       setOpenUserMenu(false);
@@ -90,7 +93,9 @@ const Layout = ({ children }) => {
         />
         <div className="clearfix" />
         {children}
-        <Footer />
+        {uniquePaths.includes(location.pathname) ? (
+          <></>
+        ) : <Footer />}
       </div>
       <div id="backtotop" className="">
         <a href="#"></a>
