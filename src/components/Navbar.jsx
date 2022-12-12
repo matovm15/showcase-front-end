@@ -121,7 +121,15 @@ const Navbar = (props) => {
           <div className="left-side">
             <div id="logo">
               <a href="/">
-                <img style={{ height: "2rem" }} src={showcase} alt="" />
+                <img
+                  style={{
+                    height: "2rem",
+                    objectFit: "contain",
+                    zoom: "1.8",
+                  }}
+                  src={showcase}
+                  alt=""
+                />
               </a>
             </div>
             <nav id="navigation">
@@ -645,16 +653,17 @@ const Navbar = (props) => {
           ) : (
             <div className="right-side">
               <div className="header-widget">
-                <a
-                  href="/login"
-                  className="popup-with-zoom-anim log-in-button"
-                >
+                <a href="/login" className="popup-with-zoom-anim log-in-button">
                   <i className="icon-feather-log-in"></i>{" "}
                   <span>Log In / Register</span>
                 </a>
               </div>
 
-              <span className="mmenu-trigger">
+              <span
+                className="mmenu-trigger"
+                ref={mobileMenuRef}
+                onClick={handleClickMobileMenu}
+              >
                 <button className="hamburger hamburger--collapse" type="button">
                   <span className="hamburger-box">
                     <span className="hamburger-inner"></span>

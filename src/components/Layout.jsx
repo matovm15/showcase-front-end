@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
 
   // handle click mobile menu
   const handleClickMobileMenu = () => {
+    console.log("handleClickMobileMenu");
     // check if other menus are open and close them
     if (openUserMenu) {
       setOpenUserMenu(false);
