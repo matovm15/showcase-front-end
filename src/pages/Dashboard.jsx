@@ -7,15 +7,20 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
-// import { UseMutation } from "@reduxjs/toolkit/dist/query/react/buildHooks";
-// import { useRegisterUserMutation } from "../features/auth/authApiSlice";
+import { useGetProfileQuery } from "../features/profile/profileApiSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
 
-  // const [registerUser, data] = useRegisterUserMutation()
-
-  // console.log(data)
+  const { isLoading, data, isSuccess, isError, error } = useGetProfileQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+      pollingInterval: 60000,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
   const handleOpenNoteForm = () => {
     setOpenNoteForm(!openNoteForm);
