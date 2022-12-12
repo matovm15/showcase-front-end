@@ -21,9 +21,13 @@ export const registerSchema = yup.object().shape({
   //   accountType: yup.string()
 });
 
-export const profileSchema = yup.object.shape({
+export const profileSchema = yup.object().shape({
   avatar: yup.string().required(),
   fee: yup.number().required(),
   skills: yup.array().required(),
-  bio: yup.string().required().min(15).max(100),
+  bio: yup
+    .string()
+    .required()
+    .min(15, "Bio must be at least 15 characters")
+    .max(500),
 });
