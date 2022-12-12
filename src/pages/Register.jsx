@@ -29,10 +29,9 @@ const Register = () => {
         ...data,
       }).unwrap();
       dispatch(setCredentials({ tokens, user }));
-      if(user.role === 'freelancer'){
-        console.log(user)
+      if (user.role === "freelancer") {
         navigate(`/dashboard/create-profile/${user.id}`);
-      }else{
+      } else {
         navigate("/dashboard");
       }
     } catch (error) {
@@ -90,9 +89,10 @@ const Register = () => {
                     name="account-type-radio"
                     id="freelancer-radio"
                     className="account-type-radio"
-                    value={'freelancer'}
+                    value={"freelancer"}
                     defaultChecked
                     {...register("role")}
+                    form="register-account-form"
                   />
                   <label
                     htmlFor="freelancer-radio"
@@ -109,8 +109,9 @@ const Register = () => {
                     name="account-type-radio"
                     id="employer-radio"
                     className="account-type-radio"
-                    value={'employer'}
+                    value={"employer"}
                     {...register("role")}
+                    form="register-account-form"
                   />
                   <label
                     htmlFor="employer-radio"
@@ -232,9 +233,9 @@ const Register = () => {
                     <span className="sr-only">Loading...</span>
                   </div>
                 ) : (
-                  'Register'
+                  "Register"
                 )}
-                
+
                 <i className="icon-material-outline-arrow-right-alt"></i>
               </button>
 
