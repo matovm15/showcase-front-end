@@ -1,5 +1,5 @@
 import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
-import { apiSlice } from  "../../app/api/apiSlice"
+import { apiSlice } from "../../app/api/apiSlice";
 
 const profileAdapter = createEntityAdapter();
 
@@ -11,13 +11,13 @@ const initialState = profileAdapter.getInitialState({
 const profileSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProfile: builder.query({
-      query: () => "/profile/me",
+      query: (token) => `/users/token/${token}`,
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
       transformResponse: (response) =>
         profileAdapter.setAll(initialState, response),
-      providesTags: ["Profile"],
+      providesTags: ["Freelancer"],
     }),
   }),
 });
