@@ -17004,3 +17004,18 @@ ul.dashboard-box-list > li:hover {
 	.padding-left-90 { padding-left: 90px !important; }
 	.padding-left-95 { padding-left: 95px !important; }
 	.padding-left-100 { padding-left: 100px !important; }
+
+	/* custom */
+	.single-thumb .range-slider__thumb[data-lower] {
+		width: 0;
+	  }
+	.single-thumb .range-slider__range {
+		border-radius: 6px;
+	  }
+
+	  .range-slider .range-slider__range {
+		background: red;
+	  }
+	  .single-thumb .range-slider__thumb[data-upper] {
+		background: red;
+	  }
