@@ -2,6 +2,7 @@ import React from "react";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import Layout from "../components/dashboard/Layout";
 import { countries } from "../data/countries";
+import { useGetProfileQuery } from "../features/profile/profileApiSlice";
 
 const CreateProfile = () => {
   const [minHourlyRate, setMinHourlyRate] = React.useState(10);
@@ -89,6 +90,11 @@ const CreateProfile = () => {
     return { fileNameWithoutExtension, fileExtension };
   };
 
+  const {data} = useGetProfileQuery(
+    JSON.parse(localStorage.getItem("refresh_token"))['token']
+  )
+
+console.log("Id is: ", data)
   return (
     <Layout>
       <div className="dashboard-container">
