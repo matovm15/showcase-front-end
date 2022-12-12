@@ -279,20 +279,10 @@ const Navbar = (props) => {
                     </li>
                   </ul>
                 </li>
-                {!isLoggedIn && (
-                  <>
-                    <li>
-                      <a href="/login">Login</a>
-                    </li>
-                    <li>
-                      <a href="/register">Create account</a>
-                    </li>
-                  </>
-                )}
               </ul>
             </nav>
           </div>
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <div className="right-side">
               <div className="header-widget hide-on-mobile">
                 <div
@@ -645,6 +635,26 @@ const Navbar = (props) => {
                 ref={mobileMenuRef}
                 onClick={handleClickMobileMenu}
               >
+                <button className="hamburger hamburger--collapse" type="button">
+                  <span className="hamburger-box">
+                    <span className="hamburger-inner"></span>
+                  </span>
+                </button>
+              </span>
+            </div>
+          ) : (
+            <div className="right-side">
+              <div className="header-widget">
+                <a
+                  href="/login"
+                  className="popup-with-zoom-anim log-in-button"
+                >
+                  <i className="icon-feather-log-in"></i>{" "}
+                  <span>Log In / Register</span>
+                </a>
+              </div>
+
+              <span className="mmenu-trigger">
                 <button className="hamburger hamburger--collapse" type="button">
                   <span className="hamburger-box">
                     <span className="hamburger-inner"></span>
