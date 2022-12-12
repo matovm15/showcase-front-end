@@ -7,9 +7,15 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
+// import { UseMutation } from "@reduxjs/toolkit/dist/query/react/buildHooks";
+// import { useRegisterUserMutation } from "../features/auth/authApiSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
+
+  // const [registerUser, data] = useRegisterUserMutation()
+
+  // console.log(data)
 
   const handleOpenNoteForm = () => {
     setOpenNoteForm(!openNoteForm);

@@ -31,7 +31,7 @@ const Register = () => {
       dispatch(setCredentials({ tokens, user }));
       if(user.role === 'freelancer'){
         console.log(user)
-        navigate(`/register/create-profile/${user.id}`);
+        navigate(`/dashboard/create-profile/${user.id}`);
       }else{
         navigate("/dashboard");
       }

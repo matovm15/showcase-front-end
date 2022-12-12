@@ -21,7 +21,6 @@ export const authSlice = createSlice({
         "refresh_token",
         JSON.stringify(action.payload.tokens.refresh)
       );
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     logout: (state) => {
       state.accessToken = null;

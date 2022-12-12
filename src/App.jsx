@@ -22,6 +22,7 @@ import FindFreelancers from "./pages/FindFreelancers";
 import FreelancerProfile from "./pages/FreelancerProfile";
 import BrowseGigs from "./pages/BrowseGigs";
 import Bid from "./pages/Bid";
+import CreateProfile from "./pages/CreateProfile";
 import RequireAuth from "./features/auth/RequireAuth";
 import Prefetch from "./features/auth/Prefetch";
 import RequireNoAuth from "./features/auth/RequireNoAuth";
@@ -70,6 +71,8 @@ const App = () => {
             { path: "active-bids", element: <ActiveBids /> },
             { path: "post-task", element: <PostTask /> },
             { path: "settings", element: <Settings /> },
+            { path: "create-profile/:id", element: <CreateProfile /> },
+
           ],
         },
       ],

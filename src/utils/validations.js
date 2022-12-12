@@ -20,3 +20,10 @@ export const registerSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match"),
   //   accountType: yup.string()
 });
+
+export const profileSchema = yup.object.shape({
+  avatar: yup.string().required(),
+  fee: yup.number().required(),
+  skills: yup.array().required(),
+  bio: yup.string().required().min(15).max(100),
+});
