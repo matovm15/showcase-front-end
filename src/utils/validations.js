@@ -22,9 +22,8 @@ export const registerSchema = yup.object().shape({
 });
 
 export const profileSchema = yup.object().shape({
-  avatar: yup.string().required(),
-  fee: yup.number().required(),
-  skills: yup.array().required(),
+  // fee: yup.number().required(),
+  // skills: yup.array().required(),
   bio: yup
     .string()
     .required()
