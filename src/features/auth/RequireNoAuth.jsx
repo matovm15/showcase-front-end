@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectAccessToken } from "./authSlice";
 
 const RequireNoAuth = () => {
-  const exceptionPaths = ["/find-freelancers"];
+  const exceptionPaths = ["/find-freelancers", "/gigs/browse", "/gigs/view-bid"];
   const isLoggedIn = useSelector(selectAccessToken);
   const location = window.location.pathname;
 

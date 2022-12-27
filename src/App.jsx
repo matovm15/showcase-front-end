@@ -76,7 +76,15 @@ const App = () => {
           ],
         },
       ],
+     
     },
+    // {
+    //   path: "/gigs",
+    //   children: [
+    //     { path: "browse", element: <BrowseGigs /> },
+    //     { path: "view-bid", element: <Bid /> },
+    //   ],
+    // },
   ]);
 
   return <RouterProvider router={router} />;

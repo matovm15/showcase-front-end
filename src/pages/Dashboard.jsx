@@ -7,7 +7,7 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
-import { useGetUserViaTokenQuery } from "../features/profile/profileApiSlice";
+import { useGetUserViaTokenQuery } from "../features/profile/profileSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);

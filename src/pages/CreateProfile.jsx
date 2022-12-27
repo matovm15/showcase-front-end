@@ -2,8 +2,8 @@ import React from "react";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import Layout from "../components/dashboard/Layout";
 // import { countries } from "../data/countries";
-import { useGetUserViaTokenQuery } from "../features/profile/profileApiSlice";
-import { useCreateProfileMutation } from "../features/auth/authApiSlice";
+import { useGetUserViaTokenQuery } from "../features/profile/profileSlice";
+import { useCreateProfileMutation } from "../features/profile/profileApiSlice";
 import useTitle from "../hooks/useTitle";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "../utils/validations";
@@ -105,7 +105,7 @@ const CreateProfile = () => {
 
   const result = useGetUserViaTokenQuery(token)
 
-
+  console.log(result?.data?.entities?.undefined)
 
 const {register, handleSubmit, formState} = useForm({
   resolver: yupResolver(profileSchema)
@@ -113,7 +113,6 @@ const {register, handleSubmit, formState} = useForm({
 
 const {errors} = formState
 
-console.log(errors)
 
 const [createProfile, {isLoading, isSuccess}] = useCreateProfileMutation()
 
@@ -121,10 +120,10 @@ const [createProfile, {isLoading, isSuccess}] = useCreateProfileMutation()
 const handleProfileCreate = async (data) => {
   setError(null);
   try {
-    console.log({...data, fee: minHourlyRate, skills: skills, id: result.error?.data, avatar: imagePreviewUrl})
+    console.log({...data, fee: minHourlyRate, skills: skills, id: result?.data?.entities?.undefined, avatar: imagePreviewUrl})
     
-    if(result.error?.data !== undefined){
-    await createProfile({...data, fee: minHourlyRate, skills: skills, id: result.error?.data, avatar: imagePreviewUrl})
+    if(result?.data?.entities?.undefined !== undefined){
+    await createProfile({...data, fee: minHourlyRate, skills: skills, id: result?.data?.entities?.undefined, avatar: imagePreviewUrl})
     }
   navigate('/dashboard')
   } catch (error) {
@@ -347,6 +346,7 @@ const handleProfileCreate = async (data) => {
                                       />
 
                                       <button
+                                        type="button"
                                         onClick={addSkill}
                                         className="keyword-input-button ripple-effect"
                                       >
