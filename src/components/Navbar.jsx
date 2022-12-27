@@ -138,7 +138,7 @@ const Navbar = (props) => {
                   <a href="/gigs/browse">For freelancers</a>
                   <ul className="dropdown-nav">
                     <li>
-                      <a href="/find-freelancers">Browse gigs</a>
+                      <a href="/gigs/browse">Browse gigs</a>
                     </li>
                     <li>
                       <a href="/freelancer-profile">Freelancer Profile</a>

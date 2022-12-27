@@ -30,13 +30,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body,
       }),
     }),
-    createProfile: builder.mutation({
-      query: (body) => ({
-        url: "/auth/create-profile",
-        method: "POST",
-        body,
-      }),
-    }),
+
     refreshToken: builder.mutation({
       query: (body) => ({
         url: "/auth/refresh",
@@ -53,5 +47,4 @@ export const {
   useSendLogOutMutation,
   useRegisterUserMutation,
   useRefreshTokenMutation,
-  useCreateProfileMutation,
 } = authApiSlice;
