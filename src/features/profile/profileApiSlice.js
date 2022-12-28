@@ -1,14 +1,6 @@
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
-const profileAdapter = createEntityAdapter();
-
-const initialState = profileAdapter.getInitialState({
-  status: "idle",
-  error: null,
-});
-
-const profileSlice = apiSlice.injectEndpoints({
+export const profileApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createProfile: builder.mutation({
       query: (body) => ({
@@ -26,6 +18,7 @@ const profileSlice = apiSlice.injectEndpoints({
         return profileAdapter.upsertOne(initialState, response);
       },
     }),
+    overrideExisting: false,
   }),
 });
 

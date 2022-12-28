@@ -350,6 +350,7 @@ const CreateProfile = () => {
                                       />
 
                                       <button
+                                        type="button"
                                         onClick={addSkill}
                                         className="keyword-input-button ripple-effect"
                                       >
