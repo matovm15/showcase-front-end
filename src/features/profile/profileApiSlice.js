@@ -10,32 +10,26 @@ const initialState = profileAdapter.getInitialState({
 
 const profileSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getUserViaToken: builder.query({
-      query: (token) => `/users/token/${token}`,
+    createProfile: builder.mutation({
+      query: (body) => ({
+        url: "/profile",
+        method: "POST",
+        body,
+      }),
+    }),
+    getUserProfile: builder.query({
+      query: () => "/profile/me",
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      transformResponse: (response) =>
-        profileAdapter.setAll(initialState, response),
-      providesTags: ["freelancer"],
+      transformResponse: (response) => {
+        return profileAdapter.upsertOne(initialState, response);
+      },
     }),
   }),
 });
 
-export const { useGetUserViaTokenQuery } = profileSlice;
+export const { useCreateProfileMutation, useGetUserProfileQuery } =
+  profileSlice;
 
-export const selectProfileResult =
-  profileSlice.endpoints.getUserViaToken.select();
-
-const selectProfileData = createSelector(
-  selectProfileResult,
-  (result) => result.data
-);
-
-export const {
-  selectAll: selectAllProfiles,
-  selectById: selectProfileById,
-  selectIds: selectProfileIds,
-} = profileAdapter.getSelectors(
-  (state) => selectProfileData(state) ?? initialState
-);
+export const selectProfileResult = profileSlice.endpoints.getUserProfile.select()

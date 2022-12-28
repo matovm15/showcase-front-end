@@ -2,18 +2,18 @@ import React from "react";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import Layout from "../components/dashboard/Layout";
 // import { countries } from "../data/countries";
-import { useGetUserViaTokenQuery } from "../features/profile/profileApiSlice";
-import { useCreateProfileMutation } from "../features/auth/authApiSlice";
 import useTitle from "../hooks/useTitle";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "../utils/validations";
-import {useForm} from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { uploadImage } from "../utils/ImageUpload";
+import { useCreateProfileMutation } from "../features/profile/profileApiSlice";
 
 const CreateProfile = () => {
-  useTitle("Create Profile")
+  useTitle("Create Profile");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [error, setError] = React.useState(null);
   const [minHourlyRate, setMinHourlyRate] = React.useState(10);
@@ -44,17 +44,25 @@ const CreateProfile = () => {
     let file = e.target.files[0];
     if (!file) return;
     if (file.size > 1024 * 1024 * 2) {
+      // TODO: show error message using toast
       alert("File size is too large");
       return;
     }
     if (!file.type.match("image.*")) {
+      // TODO: show error message using toast
       alert("File type is not supported");
       return;
     }
 
-    reader.onloadend = () => {
+    reader.onloadend = async () => {
       setFile(file);
-      setImagePreviewUrl(reader.result);
+      const imageData = await uploadImage(file);
+      if (imageData.secure_url) {
+        setImagePreviewUrl(imageData.secure_url || reader.result);
+      } else {
+        // TODO: show error message using toast
+        alert("Something went wrong while uploading image");
+      }
     };
     reader.readAsDataURL(file);
   };
@@ -74,6 +82,7 @@ const CreateProfile = () => {
         "application/pdf|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document"
       )
     ) {
+      // TODO: show error message using toast
       alert("File type is not supported");
       return;
     }
@@ -101,41 +110,36 @@ const CreateProfile = () => {
     return { fileNameWithoutExtension, fileExtension };
   };
 
-  const token = JSON.parse(localStorage.getItem('refresh_token'))['token']
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(profileSchema),
+  });
 
-  const result = useGetUserViaTokenQuery(token)
+  const { errors } = formState;
 
+  console.log(errors);
 
+  const [createProfile, { isLoading, isSuccess }] = useCreateProfileMutation();
 
-const {register, handleSubmit, formState} = useForm({
-  resolver: yupResolver(profileSchema)
-})
+  const handleProfileCreate = async (data) => {
+    setError(null);
+    try {
+      await createProfile({
+        ...data,
+        fee: minHourlyRate,
+        skills: skills,
+        avatar: imagePreviewUrl,
+      }).unwrap();
 
-const {errors} = formState
-
-console.log(errors)
-
-const [createProfile, {isLoading, isSuccess}] = useCreateProfileMutation()
-
-
-const handleProfileCreate = async (data) => {
-  setError(null);
-  try {
-    console.log({...data, fee: minHourlyRate, skills: skills, id: result.error?.data, avatar: imagePreviewUrl})
-    
-    if(result.error?.data !== undefined){
-    await createProfile({...data, fee: minHourlyRate, skills: skills, id: result.error?.data, avatar: imagePreviewUrl})
-    }
-  navigate('/dashboard')
-  } catch (error) {
-    console.log(error)
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
       if (parseInt(error.status) != error.status) {
         setError("Something went wrong. Please try again later.");
       } else {
         setError(error?.data?.message);
       }
-  }
-}
+    }
+  };
   return (
     <Layout>
       <div className="dashboard-container">
@@ -146,15 +150,15 @@ const handleProfileCreate = async (data) => {
               <h3>Welcome aboard, Tom!</h3>
               <span>Let's set up your profile!</span>
               {error && (
-                  <div className="notification error closeable">
-                    <p>{error}</p>
-                    <a
-                      onClick={() => setError(null)}
-                      className="close"
-                      href="#"
-                    ></a>
-                  </div>
-                )}
+                <div className="notification error closeable">
+                  <p>{error}</p>
+                  <a
+                    onClick={() => setError(null)}
+                    className="close"
+                    href="#"
+                  ></a>
+                </div>
+              )}
               <nav id="breadcrumbs" className="dark">
                 <ul>
                   <li>
@@ -178,7 +182,7 @@ const handleProfileCreate = async (data) => {
                       </h3>
                     </div>
                     <div className="content with-padding padding-bottom-10">
-                      <div className="row" style={{ justifyContent: 'center' }}>
+                      <div className="row" style={{ justifyContent: "center" }}>
                         <div className="col-auto">
                           <div
                             className="avatar-wrapper"
@@ -188,7 +192,7 @@ const handleProfileCreate = async (data) => {
                           >
                             <img
                               className="profile-pic"
-                              name='avatar'
+                              name="avatar"
                               src={imagePreviewUrl}
                               alt="profile avatar"
                             />
@@ -304,14 +308,13 @@ const handleProfileCreate = async (data) => {
                                   <div className="submit-field">
                                     <input
                                       type="text"
-                                      className='with-border'
+                                      className="with-border"
                                       name="fee"
                                       value={minHourlyRate}
                                       onChange={(e) =>
                                         setMinHourlyRate(e.target.value)
                                       }
                                     />
-                                    
                                   </div>
                                 </div>
                               </div>
@@ -341,7 +344,7 @@ const handleProfileCreate = async (data) => {
                                             addSkill();
                                           }
                                         }}
-                                        className='keyword-input with-border'
+                                        className="keyword-input with-border"
                                         placeholder="e.g. Angular, Laravel"
                                         disabled={skills.length >= 10}
                                       />
@@ -356,7 +359,7 @@ const handleProfileCreate = async (data) => {
                                     <div
                                       className="keywords-list"
                                       style={{ height: "auto" }}
-                                      name='skills'
+                                      name="skills"
                                     >
                                       {skills.map((skill, index) => (
                                         <span className="keyword" key={index}>
@@ -440,7 +443,7 @@ const handleProfileCreate = async (data) => {
                                   <h5>Tagline</h5>
                                   <input
                                     type="text"
-                                    name='title'
+                                    name="title"
                                     className={`with-border ${
                                       errors.title ? "is-invalid" : ""
                                     }`}
@@ -448,10 +451,10 @@ const handleProfileCreate = async (data) => {
                                     {...register("title")}
                                   />
                                   {errors.title && (
-                      <div className="invalid-feedback">
-                        {errors.title.message}
-                      </div>
-                    )}
+                                    <div className="invalid-feedback">
+                                      {errors.title.message}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -500,14 +503,48 @@ const handleProfileCreate = async (data) => {
                   </div>
                   <div className="col-xl-12">
                     <button
-                      type='submit'
+                      type="submit"
                       className="button ripple-effect big margin-top-30"
                     >
-                      Save Changes
+                      {isLoading ? (
+                        <div className="spinner-border text-light"></div>
+                      ) : (
+                        "Save Changes"
+                      )}
                     </button>
                   </div>
                 </div>
               </form>
+            </div>
+            <div className="dashboard-footer-spacer"></div>
+            <div className="small-footer margin-top-15">
+              <div className="small-footer-copyrights">
+                © {new Date().getFullYear()} <strong>Showcase</strong>. All
+                Rights Reserved.
+              </div>
+              <ul className="footer-social-links">
+                <li>
+                  <a href="#" title="Facebook" data-tippy-placement="top">
+                    <i className="icon-brand-facebook-f"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" title="Twitter" data-tippy-placement="top">
+                    <i className="icon-brand-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" title="Google Plus" data-tippy-placement="top">
+                    <i className="icon-brand-google-plus-g"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" title="LinkedIn" data-tippy-placement="top">
+                    <i className="icon-brand-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+              <div className="clearfix"></div>
             </div>
           </div>
         </div>

@@ -7,27 +7,22 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
-import { useGetUserViaTokenQuery } from "../features/profile/profileApiSlice";
+import { useGetCurrentUserQuery } from "../features/auth/authApiSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
 
-  const token = JSON.parse(localStorage.getItem('refresh_token'))['token']
+  const { isLoading, data, isSuccess, isError, error } = useGetCurrentUserQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+      pollingInterval: 60000,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
-
-  // const { isLoading, data, isSuccess, isError, error } = useGetUserViaTokenQuery(
-  //   undefined,
-  //   {
-  //     refetchOnMountOrArgChange: true,
-  //     pollingInterval: 60000,
-  //     refetchOnReconnect: true,
-  //     refetchOnWindowFocus: true,
-  //   }
-  // );
-
-  // const result = useGetUserViaTokenQuery(token)
-
-  // console.log(result.error.data)
+  console.log("data", data);
 
   const handleOpenNoteForm = () => {
     setOpenNoteForm(!openNoteForm);
