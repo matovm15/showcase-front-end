@@ -19,16 +19,27 @@ const profileSlice = apiSlice.injectEndpoints({
         profileAdapter.setAll(initialState, response),
       providesTags: ["freelancer"],
     }),
+    getProfile: builder.query({
+      query: (user_id) => `/profile/${user_id}`,
+      // validateStatus: (response, result) => {
+      //   return response.status === 200 && !result.isError;
+      // },
+      transformResponse: (response) =>
+        profileAdapter.setAll(initialState, response),
+      providesTags: ["freelancer"],
+    }),
   }),
 });
 
-export const { useGetUserViaTokenQuery } = profileSlice;
+export const { useGetUserViaTokenQuery, useGetProfileQuery } = profileSlice;
 
 export const selectProfileResult =
   profileSlice.endpoints.getUserViaToken.select();
 
+export const selectUserProfile = profileSlice.endpoints.getProfile.select();
+
 const selectProfileData = createSelector(
-  selectProfileResult,
+  [selectProfileResult, selectUserProfile],
   (result) => result.data
 );
 

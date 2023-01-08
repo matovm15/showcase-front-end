@@ -7,7 +7,7 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
-import { useGetUserViaTokenQuery } from "../features/profile/profileSlice";
+import { useGetUserViaTokenQuery, useGetProfileQuery } from "../features/profile/profileSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
@@ -15,19 +15,23 @@ const Dashboard = () => {
   const token = JSON.parse(localStorage.getItem('refresh_token'))['token']
 
 
-  // const { isLoading, data, isSuccess, isError, error } = useGetUserViaTokenQuery(
-  //   undefined,
-  //   {
-  //     refetchOnMountOrArgChange: true,
-  //     pollingInterval: 60000,
-  //     refetchOnReconnect: true,
-  //     refetchOnWindowFocus: true,
-  //   }
-  // );
+  const result = useGetUserViaTokenQuery(token)
 
-  // const result = useGetUserViaTokenQuery(token)
+// Get user profile via user id
+const user = useGetProfileQuery(result?.data?.entities?.undefined)
 
-  // console.log(result.error.data)
+
+console.log(user?.data?.entities)
+
+let keys;
+if (user?.data?.entities !== undefined){
+
+  keys = Object.keys(user?.data?.entities);
+
+  console.log(user?.data?.entities[keys[0]])
+}
+
+
 
   const handleOpenNoteForm = () => {
     setOpenNoteForm(!openNoteForm);
@@ -41,7 +45,7 @@ const Dashboard = () => {
           <div className="dashboard-content-container" data-simplebar>
             <div className="dashboard-content-inner">
               <div className="dashboard-headline">
-                <h3>Howdy, Tom!</h3>
+                <h3>Howdy, {user?.data?.entities[keys[1]]?.name} !</h3>
                 <span>We are glad to see you again!</span>
                 <nav id="breadcrumbs" className="dark">
                   <ul>
