@@ -1,5 +1,13 @@
+import { createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 import { logout } from "./authSlice";
+
+const userAdapter = createEntityAdapter();
+
+const initialState = userAdapter.getInitialState({
+  status: "idle",
+  error: null,
+});
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -30,13 +38,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body,
       }),
     }),
-
     refreshToken: builder.mutation({
       query: (body) => ({
         url: "/auth/refresh",
         method: "POST",
         body,
       }),
+    }),
+    getCurrentUser: builder.query({
+      query: () => "/users/me",
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError;
+      },
+      transformResponse: (response) => {
+        return userAdapter.upsertOne(initialState, response);
+      },
     }),
   }),
   overrideExisting: false,
@@ -47,4 +63,5 @@ export const {
   useSendLogOutMutation,
   useRegisterUserMutation,
   useRefreshTokenMutation,
+  useGetCurrentUserQuery,
 } = authApiSlice;
