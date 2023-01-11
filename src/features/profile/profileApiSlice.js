@@ -23,6 +23,6 @@ export const profileApiSlice = apiSlice.injectEndpoints({
 });
 
 export const { useCreateProfileMutation, useGetUserProfileQuery } =
-  profileSlice;
+  profileApiSlice;
 
-export const selectProfileResult = profileSlice.endpoints.getUserProfile.select()
+export const selectProfileResult = profileApiSlice.endpoints.getUserProfile.select()
