@@ -149,6 +149,7 @@ const CreateProfile = () => {
             <div className="dashboard-headline">
               <h3>Welcome aboard, Tom!</h3>
               <span>Let's set up your profile!</span>
+              
               {error && (
                 <div className="notification error closeable">
                   <p>{error}</p>
