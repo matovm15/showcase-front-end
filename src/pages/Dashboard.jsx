@@ -7,7 +7,8 @@ import AddNote from "../components/dashboard/AddNote";
 import { DASH_NOTIFICATIONS, profileViews } from "../data/dashNotifications";
 import Notifications from "../components/dashboard/Notifications";
 import ProfileViews from "../components/dashboard/ProfileViews";
-import { useGetUserViaTokenQuery, useGetProfileQuery } from "../features/profile/profileSlice";
+import { useGetProfileQuery, useGetUserViaTokenQuery } from "../features/profile/profileSlice";
+import { useGetUserProfileQuery } from "../features/profile/profileApiSlice";
 
 const Dashboard = () => {
   const [openNoteForm, setOpenNoteForm] = useState(false);
@@ -19,6 +20,10 @@ const Dashboard = () => {
 
 // Get user profile via user id
 const user = useGetProfileQuery(result?.data?.entities?.undefined)
+
+const { data } = useGetUserProfileQuery()
+
+console.log("profile: ", data)
 
 
 console.log(user?.data?.entities)

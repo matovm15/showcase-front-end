@@ -113,23 +113,7 @@ const Navbar = (props) => {
 
   // Get user id via token 
 
-  const token = JSON.parse(localStorage.getItem('refresh_token'))['token']
 
-  const result = useGetUserViaTokenQuery(token)
-
-// Get user profile via user id
-const user = useGetProfileQuery(result?.data?.entities?.undefined)
-
-
-console.log(user?.data?.entities)
-
-let keys;
-if (user?.data?.entities !== undefined){
-
-  keys = Object.keys(user?.data?.entities);
-
-  console.log(user?.data?.entities[keys[0]])
-}
 
 // const avatar1 = user.data.entities[Object.keys(user.data.entities)[0]]
 
@@ -539,11 +523,11 @@ if (user?.data?.entities !== undefined){
                               <li className="notifications-not-read">
                                 <a href="dashboard-messages.html">
                                   <span className="notification-avatar status-online">
-                                    {user?.data?.entities !== undefined ? (
+                                    {/* {user?.data?.entities !== undefined ? (
                                       <img src={user?.data?.entities[keys[0]]?.avatar} alt="" />
                                     ):(
                                       <img src={avatar} alt="" />
-                                    )}
+                                    )} */}
                                     
                                   </span>
                                   <div className="notification-text">
@@ -560,11 +544,11 @@ if (user?.data?.entities !== undefined){
                               <li className="notifications-not-read">
                                 <a href="dashboard-messages.html">
                                   <span className="notification-avatar status-offline">
-                                  {user?.data?.entities !== undefined ? (
+                                  {/* {user?.data?.entities !== undefined ? (
                                       <img src={user?.data?.entities[keys[0]]?.avatar} alt="" />
                                     ):(
                                       <img src={avatar} alt="" />
-                                    )}
+                                    )} */}
                                     
                                   </span>
                                   <div className="notification-text">
@@ -620,11 +604,11 @@ if (user?.data?.entities !== undefined){
                   <div className="header-notifications-trigger">
                     <a href="#" ref={userMenuRef} onClick={handleClickUserMenu}>
                       <div className="user-avatar status-online">
-                      {user?.data?.entities !== undefined ? (
+                      {/* {user?.data?.entities !== undefined ? (
                                       <img src={user?.data?.entities[keys[0]]?.avatar} alt="" />
                                     ):(
                                       <img src={avatar} alt="" />
-                                    )}
+                                    )} */}
                                     
                       </div>
                     </a>
@@ -634,15 +618,15 @@ if (user?.data?.entities !== undefined){
                     <div className="user-status">
                       <div className="user-details">
                         <div className="user-avatar status-online">
-                        {user?.data?.entities !== undefined ? (
+                        {/* {user?.data?.entities !== undefined ? (
                                       <img src={user?.data?.entities[keys[0]]?.avatar} alt="" />
                                     ):(
                                       <img src={avatar} alt="" />
-                                    )}
+                                    )} */}
                                     
                         </div>
                         <div className="user-name">
-                          {user?.data?.entities[keys[1]]?.name} <span>{user?.data?.entities[keys[1]]?.role}</span>
+                          {/* {user?.data?.entities[keys[1]]?.name} <span>{user?.data?.entities[keys[1]]?.role}</span> */}
                         </div>
                       </div>
 

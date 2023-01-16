@@ -17,8 +17,7 @@ export const profileApiSlice = apiSlice.injectEndpoints({
       transformResponse: (response) => {
         return profileAdapter.upsertOne(initialState, response);
       },
-    }),
-    overrideExisting: false,
+    })
   }),
 });
 
